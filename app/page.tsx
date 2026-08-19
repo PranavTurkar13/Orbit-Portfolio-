@@ -32,7 +32,22 @@ export default function HomePage() {
     <div className="flex flex-col min-h-screen">
       {/* 1. HERO SECTION */}
       <section className="relative pt-20 pb-24 sm:pt-28 sm:pb-32 overflow-hidden">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Subtle Animated Grid Background */}
+        <div className="absolute inset-0 pointer-events-none hero-grid-animated" aria-hidden="true" />
+
+        {/* Very Faint Floating Code Symbols (3-5% Opacity) */}
+        <div className="absolute inset-0 pointer-events-none select-none overflow-hidden font-mono text-neutral-900/5 font-semibold text-lg sm:text-2xl" aria-hidden="true">
+          <span className="absolute top-10 left-[8%] animate-float-symbol-1 text-2xl sm:text-3xl">&lt; /&gt;</span>
+          <span className="absolute top-14 right-[10%] animate-float-symbol-2 text-2xl sm:text-3xl">&#123; &#125;</span>
+          <span className="absolute top-[42%] left-[6%] animate-float-symbol-3 text-xl sm:text-2xl">01</span>
+          <span className="absolute top-[38%] right-[8%] animate-float-symbol-1 text-xl sm:text-2xl font-bold">AI</span>
+          <span className="absolute bottom-16 left-[12%] animate-float-symbol-2 text-2xl sm:text-3xl">( )</span>
+          <span className="absolute bottom-20 right-[12%] animate-float-symbol-3 text-2xl sm:text-3xl">#</span>
+          <span className="absolute top-8 left-[45%] animate-float-symbol-2 text-xl sm:text-2xl">;</span>
+          <span className="absolute bottom-8 right-[42%] animate-float-symbol-1 text-xl sm:text-2xl">=&gt;</span>
+        </div>
+
+        <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col items-center text-center max-w-3xl mx-auto">
             {/* Eyebrow */}
             <span className="text-xs sm:text-xs font-semibold uppercase tracking-[0.25em] text-neutral-500 mb-6">

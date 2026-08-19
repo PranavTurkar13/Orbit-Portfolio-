@@ -80,11 +80,63 @@ body {
   animation: wave 2.2s infinite ease-in-out;
 }
 
+/* Animated Subtle Grid Pattern */
+@keyframes gridMove {
+  0% {
+    background-position: 0px 0px;
+  }
+  100% {
+    background-position: 40px 40px;
+  }
+}
+
+.hero-grid-animated {
+  background-image: 
+    linear-gradient(to right, rgba(0, 0, 0, 0.045) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.045) 1px, transparent 1px);
+  background-size: 40px 40px;
+  animation: gridMove 22s linear infinite;
+  mask-image: radial-gradient(ellipse 80% 65% at 50% 40%, #000 35%, transparent 100%);
+  -webkit-mask-image: radial-gradient(ellipse 80% 65% at 50% 40%, #000 35%, transparent 100%);
+}
+
+/* Floating Code Symbols Animations */
+@keyframes floatSymbol1 {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-14px) rotate(3deg); }
+}
+
+@keyframes floatSymbol2 {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(12px) rotate(-3deg); }
+}
+
+@keyframes floatSymbol3 {
+  0%, 100% { transform: translate(0px, 0px) rotate(0deg); }
+  50% { transform: translate(8px, -10px) rotate(2deg); }
+}
+
+.animate-float-symbol-1 {
+  animation: floatSymbol1 9s ease-in-out infinite;
+}
+
+.animate-float-symbol-2 {
+  animation: floatSymbol2 11s ease-in-out infinite 2s;
+}
+
+.animate-float-symbol-3 {
+  animation: floatSymbol3 13s ease-in-out infinite 4s;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .animate-float-slow,
   .animate-float-delayed,
   .animate-float-alt,
-  .animate-wave {
+  .animate-wave,
+  .hero-grid-animated,
+  .animate-float-symbol-1,
+  .animate-float-symbol-2,
+  .animate-float-symbol-3 {
     animation: none !important;
   }
 }
