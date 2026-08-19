@@ -1,69 +1,211 @@
-import Image from "next/image";
+import React from "react";
+import Link from "next/link";
+import { profile } from "@/data/profile";
+import { projects } from "@/data/projects";
+import { skillCategories } from "@/data/skills";
+import { socialLinks } from "@/data/social-links";
+import { Button } from "@/components/ui/Button";
+import { SectionHeading } from "@/components/ui/SectionHeading";
+import { ProjectCard } from "@/components/projects/ProjectCard";
+import { SkillCard } from "@/components/skills/SkillCard";
+import { GithubIcon, LinkedinIcon, XIcon, MailIcon } from "@/components/ui/Icons";
+import { Download, ArrowRight } from "lucide-react";
 
-export default function Home() {
+export default function HomePage() {
+  const featuredProjects = projects.filter((p) => p.featured);
+
+  const getSocialIcon = (iconName: string) => {
+    switch (iconName) {
+      case "github":
+        return <GithubIcon size={18} />;
+      case "linkedin":
+        return <LinkedinIcon size={18} />;
+      case "twitter":
+        return <XIcon size={17} />;
+      case "email":
+      default:
+        return <MailIcon size={18} />;
+    }
+  };
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+    <div className="flex flex-col min-h-screen">
+      {/* 1. HERO SECTION */}
+      <section className="relative pt-20 pb-24 sm:pt-28 sm:pb-32 overflow-hidden">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col items-center text-center max-w-3xl mx-auto">
+            {/* Eyebrow */}
+            <span className="text-xs sm:text-xs font-semibold uppercase tracking-[0.25em] text-neutral-500 mb-6">
+              WELCOME TO MY PORTFOLIO
+            </span>
+
+            {/* Main Heading */}
+            <h1 className="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-neutral-950 mb-3">
+              Hi, I&apos;m {profile.shortName}{" "}
+              <span className="animate-wave select-none">👋</span>
+            </h1>
+
+            {/* Role / Subtitle */}
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-semibold text-neutral-600 tracking-tight mb-6">
+              {profile.title}
+            </h2>
+
+            {/* Description */}
+            <p className="text-base sm:text-lg text-neutral-600 leading-relaxed max-w-2xl mb-8">
+              {profile.heroDescription}
+            </p>
+
+            {/* Social Icons */}
+            <div className="flex items-center gap-3 mb-10">
+              {socialLinks
+                .filter((s) => s.icon !== "email")
+                .map((item) => (
+                  <a
+                    key={item.name}
+                    href={item.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={item.label}
+                    className="p-3 rounded-full border border-neutral-200 bg-white text-neutral-700 hover:text-neutral-950 hover:border-neutral-400 hover:shadow-xs transition-all duration-150"
+                  >
+                    {getSocialIcon(item.icon)}
+                  </a>
+                ))}
+            </div>
+
+            {/* Hero CTAs */}
+            <div className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto">
+              <Button
+                href={profile.resumeUrl}
+                external
+                download="Pranav_Turkar_Resume.pdf"
+                size="lg"
+                variant="primary"
+                icon={<Download className="w-4 h-4" />}
+                iconPosition="left"
+                className="w-full sm:w-auto px-7 py-3.5 !rounded-xl"
+              >
+                Download Resume
+              </Button>
+
+              <Button
+                href="#featured-projects"
+                size="lg"
+                variant="outline"
+                icon={<ArrowRight className="w-4 h-4" />}
+                iconPosition="right"
+                className="w-full sm:w-auto px-7 py-3.5 !rounded-xl"
+              >
+                View My Work
+              </Button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 2. FEATURED PROJECTS SECTION */}
+      <section
+        id="featured-projects"
+        className="py-20 sm:py-28 bg-neutral-50/50 border-t border-neutral-100 scroll-mt-16"
+      >
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <SectionHeading
+            eyebrow="PORTFOLIO"
+            title="Featured Projects"
+            align="left"
+            action={
+              <Link
+                href="/projects"
+                className="inline-flex items-center gap-1.5 text-sm font-semibold text-neutral-900 hover:text-neutral-600 transition-colors"
+              >
+                View all <ArrowRight className="w-4 h-4" />
+              </Link>
+            }
+          />
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+            {featuredProjects.map((project) => (
+              <ProjectCard key={project.slug} project={project} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 3. SKILLS & TECHNOLOGIES SECTION */}
+      <section className="py-20 sm:py-28 bg-white border-t border-neutral-100">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <SectionHeading
+            eyebrow="WHAT I WORK WITH"
+            title="Skills & Technologies"
+            align="center"
+          />
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {skillCategories.map((cat) => (
+              <SkillCard key={cat.category} skillCategory={cat} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 4. LET'S COLLABORATE / CTA SECTION */}
+      <section className="py-20 sm:py-28 bg-neutral-50/70 border-t border-neutral-100">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col items-center text-center max-w-2xl mx-auto">
+            <span className="text-xs font-semibold uppercase tracking-[0.25em] text-neutral-500 mb-4">
+              LET&apos;S COLLABORATE
+            </span>
+
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-neutral-950 mb-4">
+              Got a project in mind?
+            </h2>
+
+            <p className="text-base sm:text-lg text-neutral-600 leading-relaxed mb-8">
+              I&apos;m always open to discussing new opportunities, interesting
+              projects, or technical collaborations. Reach out and let&apos;s build
+              something great together.
+            </p>
+
+            <div className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto">
+              <Button
+                href="/contact"
+                size="lg"
+                variant="primary"
+                className="w-full sm:w-auto px-8 py-3.5 !rounded-xl"
+              >
+                Get In Touch
+              </Button>
+
+              <Button
+                href={`mailto:${profile.email}`}
+                size="lg"
+                variant="outline"
+                className="w-full sm:w-auto px-7 py-3.5 !rounded-xl"
+              >
+                {profile.email}
+              </Button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 5. PERSONAL ETHOS / RELENTLESS MINDSET MESSAGE */}
+      <section className="py-16 sm:py-20 bg-white border-t border-neutral-100">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-4">
+          <span className="text-xs font-bold uppercase tracking-widest text-neutral-400">
+            PERSONAL ETHOS &amp; MINDSET
+          </span>
+          <blockquote className="text-xl sm:text-2xl lg:text-3xl font-extrabold text-neutral-950 tracking-tight leading-snug">
+            &ldquo;Talent without working hard is nothing.&rdquo;
+          </blockquote>
+          <p className="text-xs font-semibold text-neutral-400 uppercase tracking-wider">
+            — Cristiano Ronaldo
+          </p>
+          <p className="text-xs sm:text-sm text-neutral-600 leading-relaxed max-w-2xl mx-auto pt-1">
+            Whether it is mastering DSA, architecting full-stack web platforms, or preparing for high-stakes placement drives, I bring that same sports ethos to software engineering: show up every single day, master the fundamentals, embrace the pressure, and deliver with pride.
           </p>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
+      </section>
     </div>
   );
 }
