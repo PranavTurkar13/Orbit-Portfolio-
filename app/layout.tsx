@@ -40,8 +40,44 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: "Pranav Prakash Turkar",
+    alternateName: "Pranav Turkar",
+    jobTitle: "Full-Stack Developer",
+    alumniOf: {
+      "@type": "EducationalOrganization",
+      name: "P.E.S. Modern College of Engineering, Pune",
+    },
+    url: "https://pranav-turkar.vercel.app",
+    sameAs: [
+      "https://github.com/PranavTurkar13",
+      "https://www.linkedin.com/in/pranav-turkar/",
+      "https://x.com/1963Pranav23414",
+    ],
+    knowsAbout: [
+      "Full-Stack Web Development",
+      "React.js",
+      "Next.js",
+      "TypeScript",
+      "Node.js",
+      "MongoDB",
+      "PostgreSQL",
+      "LLM Engineering",
+      "Python",
+      "Java",
+    ],
+  };
+
   return (
     <html lang="en" className={`${inter.variable} h-full antialiased`}>
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
       <body className="min-h-full flex flex-col font-sans bg-white text-neutral-900 selection:bg-neutral-900 selection:text-white">
         <Navbar />
         <main className="flex-1">{children}</main>
