@@ -6,9 +6,7 @@ import { Badge } from "@/components/ui/Badge";
 import {
   Award,
   ArrowRight,
-  Code2,
   Database,
-  Terminal,
   Cpu,
   Network,
   HardDrive,
@@ -19,8 +17,6 @@ import {
   Compass,
   ArrowDown,
   ArrowLeft,
-  Target,
-  Sparkles,
 } from "lucide-react";
 
 const MILESTONES = [
@@ -50,7 +46,6 @@ export const PlacementStoryView: React.FC<PlacementStoryViewProps> = ({
   const [comparisonMode, setComparisonMode] = useState<"strategic" | "exhaustive">("strategic");
   const [activeCsPillar, setActiveCsPillar] = useState<string>("oop");
   const [activeProjectQuestion, setActiveProjectQuestion] = useState<number | null>(0);
-  const [activeHrQuestion, setActiveHrQuestion] = useState<number | null>(0);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -83,11 +78,11 @@ export const PlacementStoryView: React.FC<PlacementStoryViewProps> = ({
   };
 
   return (
-    <div className="min-h-screen bg-white text-neutral-900 selection:bg-neutral-900 selection:text-white">
+    <div className="min-h-screen bg-white dark:bg-neutral-950 text-neutral-900 dark:text-neutral-100 selection:bg-neutral-900 selection:text-white dark:selection:bg-neutral-100 dark:selection:text-neutral-950 transition-colors">
       {/* Top Reading Progress Bar */}
-      <div className="fixed top-0 left-0 right-0 h-1 bg-neutral-100 z-50">
+      <div className="fixed top-0 left-0 right-0 h-1 bg-neutral-100 dark:bg-neutral-800 z-50">
         <div
-          className="h-full bg-neutral-950 transition-all duration-150"
+          className="h-full bg-neutral-950 dark:bg-white transition-all duration-150"
           style={{ width: `${scrollProgress}%` }}
         />
       </div>
@@ -98,7 +93,7 @@ export const PlacementStoryView: React.FC<PlacementStoryViewProps> = ({
           <div className="mb-8">
             <button
               onClick={onBack}
-              className="inline-flex items-center gap-2 text-xs font-semibold text-neutral-600 hover:text-neutral-950 transition-colors cursor-pointer group"
+              className="inline-flex items-center gap-2 text-xs font-semibold text-neutral-600 dark:text-neutral-400 hover:text-neutral-950 dark:hover:text-white transition-colors cursor-pointer group"
             >
               <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
               Back to all articles
@@ -109,9 +104,9 @@ export const PlacementStoryView: React.FC<PlacementStoryViewProps> = ({
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
           {/* LEFT STICKY JOURNEY MAP (Desktop) */}
           <aside className="hidden lg:block lg:col-span-3 sticky top-24 space-y-4">
-            <div className="p-4.5 rounded-2xl bg-white border border-neutral-200/90 shadow-2xs space-y-3">
-              <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-neutral-500 pb-2 border-b border-neutral-100">
-                <Compass className="w-4 h-4 text-neutral-900" />
+            <div className="p-4.5 rounded-2xl bg-white dark:bg-neutral-900 border border-neutral-200/90 dark:border-neutral-800 shadow-2xs space-y-3">
+              <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-neutral-500 dark:text-neutral-400 pb-2 border-b border-neutral-100 dark:border-neutral-800">
+                <Compass className="w-4 h-4 text-neutral-900 dark:text-neutral-100" />
                 <span>Roadmap Steps</span>
               </div>
               <nav className="space-y-1">
@@ -123,15 +118,15 @@ export const PlacementStoryView: React.FC<PlacementStoryViewProps> = ({
                       onClick={() => scrollTo(item.id)}
                       className={`w-full text-left flex items-center gap-2.5 px-3 py-1.5 rounded-lg text-xs font-medium transition-all duration-150 cursor-pointer ${
                         isActive
-                          ? "bg-neutral-950 text-white font-semibold shadow-xs"
-                          : "text-neutral-600 hover:text-neutral-950 hover:bg-neutral-100"
+                          ? "bg-neutral-950 text-white dark:bg-white dark:text-neutral-950 font-semibold shadow-xs"
+                          : "text-neutral-600 dark:text-neutral-400 hover:text-neutral-950 dark:hover:text-white hover:bg-neutral-100 dark:hover:bg-neutral-800"
                       }`}
                     >
                       <span
                         className={`w-4 h-4 rounded-full flex items-center justify-center text-[10px] font-mono shrink-0 ${
                           isActive
-                            ? "bg-white/20 text-white"
-                            : "bg-neutral-100 text-neutral-600"
+                            ? "bg-white/20 text-white dark:bg-neutral-950/20 dark:text-neutral-950"
+                            : "bg-neutral-100 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-400"
                         }`}
                       >
                         {idx + 1}
@@ -144,21 +139,21 @@ export const PlacementStoryView: React.FC<PlacementStoryViewProps> = ({
             </div>
 
             {/* Placement Offer Card */}
-            <div className="p-4.5 rounded-2xl bg-white border border-neutral-200/90 shadow-2xs space-y-2.5">
-              <div className="flex items-center gap-2 text-xs font-semibold text-neutral-800">
+            <div className="p-4.5 rounded-2xl bg-white dark:bg-neutral-900 border border-neutral-200/90 dark:border-neutral-800 shadow-2xs space-y-2.5">
+              <div className="flex items-center gap-2 text-xs font-semibold text-neutral-800 dark:text-neutral-200">
                 <Award className="w-4 h-4 text-amber-500" />
                 <span>Offers Secured</span>
               </div>
-              <div className="space-y-1.5 pt-1 text-xs font-bold text-neutral-900">
-                <div className="flex items-center justify-between p-2 rounded-xl bg-neutral-50 border border-neutral-200/70">
+              <div className="space-y-1.5 pt-1 text-xs font-bold text-neutral-900 dark:text-white">
+                <div className="flex items-center justify-between p-2 rounded-xl bg-neutral-50 dark:bg-neutral-800/80 border border-neutral-200/70 dark:border-neutral-700">
                   <span>Cognizant</span>
-                  <span className="text-[10px] font-medium px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800">
+                  <span className="text-[10px] font-medium px-2 py-0.5 rounded-full bg-emerald-100 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300">
                     Selected
                   </span>
                 </div>
-                <div className="flex items-center justify-between p-2 rounded-xl bg-neutral-50 border border-neutral-200/70">
+                <div className="flex items-center justify-between p-2 rounded-xl bg-neutral-50 dark:bg-neutral-800/80 border border-neutral-200/70 dark:border-neutral-700">
                   <span>LTIMindtree</span>
-                  <span className="text-[10px] font-medium px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800">
+                  <span className="text-[10px] font-medium px-2 py-0.5 rounded-full bg-emerald-100 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300">
                     Selected
                   </span>
                 </div>
@@ -175,26 +170,26 @@ export const PlacementStoryView: React.FC<PlacementStoryViewProps> = ({
                   <Badge variant="default" size="sm">
                     Placement Strategy
                   </Badge>
-                  <span className="text-xs text-neutral-400 font-medium">•</span>
-                  <span className="text-xs text-neutral-500 font-medium">5 min read</span>
+                  <span className="text-xs text-neutral-400 dark:text-neutral-500 font-medium">•</span>
+                  <span className="text-xs text-neutral-500 dark:text-neutral-400 font-medium">5 min read</span>
                 </div>
 
-                <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-neutral-950 leading-tight">
+                <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-neutral-950 dark:text-white leading-tight">
                   The Strategic Blueprint: How I Secured Dual Placement Offers at Cognizant &amp; LTIMindtree
                 </h1>
 
-                <p className="text-sm sm:text-base text-neutral-600 leading-relaxed">
+                <p className="text-sm sm:text-base text-neutral-600 dark:text-neutral-400 leading-relaxed">
                   A high-leverage preparation guide focusing on high-frequency DSA patterns, fluent SQL, CS core fundamentals, and deep project defense instead of endless problem counts.
                 </p>
               </div>
 
               {/* Journey Milestones Strip */}
-              <div className="p-5 rounded-2xl bg-white border border-neutral-200/90 shadow-2xs space-y-4">
-                <div className="flex items-center justify-between flex-wrap gap-2 pb-3 border-b border-neutral-100">
-                  <span className="text-xs font-bold uppercase tracking-wider text-neutral-500">
+              <div className="p-5 rounded-2xl bg-white dark:bg-neutral-900 border border-neutral-200/90 dark:border-neutral-800 shadow-2xs space-y-4">
+                <div className="flex items-center justify-between flex-wrap gap-2 pb-3 border-b border-neutral-100 dark:border-neutral-800">
+                  <span className="text-xs font-bold uppercase tracking-wider text-neutral-500 dark:text-neutral-400">
                     Preparation Journey
                   </span>
-                  <span className="text-xs font-semibold text-neutral-800 bg-neutral-100 px-2.5 py-0.5 rounded-full">
+                  <span className="text-xs font-semibold text-neutral-800 dark:text-neutral-200 bg-neutral-100 dark:bg-neutral-800 px-2.5 py-0.5 rounded-full">
                     Target: Campus Drives
                   </span>
                 </div>
@@ -209,13 +204,13 @@ export const PlacementStoryView: React.FC<PlacementStoryViewProps> = ({
                   ].map((step, idx) => (
                     <div
                       key={step.title}
-                      className="p-3 rounded-xl bg-neutral-50/80 border border-neutral-200/70 text-center space-y-0.5"
+                      className="p-3 rounded-xl bg-neutral-50/80 dark:bg-neutral-800/80 border border-neutral-200/70 dark:border-neutral-700 text-center space-y-0.5"
                     >
-                      <span className="inline-block w-4.5 h-4.5 rounded-full bg-neutral-950 text-white text-[10px] font-mono font-bold leading-4.5 mb-0.5">
+                      <span className="inline-block w-4.5 h-4.5 rounded-full bg-neutral-950 text-white dark:bg-white dark:text-neutral-950 text-[10px] font-mono font-bold leading-4.5 mb-0.5">
                         {idx + 1}
                       </span>
-                      <p className="text-xs font-bold text-neutral-950">{step.title}</p>
-                      <p className="text-[10px] text-neutral-500">{step.sub}</p>
+                      <p className="text-xs font-bold text-neutral-950 dark:text-white">{step.title}</p>
+                      <p className="text-[10px] text-neutral-500 dark:text-neutral-400">{step.sub}</p>
                     </div>
                   ))}
                 </div>
@@ -223,7 +218,7 @@ export const PlacementStoryView: React.FC<PlacementStoryViewProps> = ({
                 <div className="flex justify-center pt-1">
                   <button
                     onClick={() => scrollTo("strategy")}
-                    className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-neutral-950 text-white text-xs font-semibold hover:bg-neutral-800 transition-all cursor-pointer shadow-2xs"
+                    className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-neutral-950 text-white dark:bg-white dark:text-neutral-950 text-xs font-semibold hover:bg-neutral-800 dark:hover:bg-neutral-200 transition-all cursor-pointer shadow-2xs"
                   >
                     Explore Strategy
                     <ArrowDown className="w-3.5 h-3.5" />
@@ -233,30 +228,30 @@ export const PlacementStoryView: React.FC<PlacementStoryViewProps> = ({
             </section>
 
             {/* 2. STRATEGIC FOCUS */}
-            <section id="strategy" className="space-y-4 scroll-mt-24 pt-4 border-t border-neutral-100">
+            <section id="strategy" className="space-y-4 scroll-mt-24 pt-4 border-t border-neutral-100 dark:border-neutral-800">
               <div className="space-y-1">
-                <span className="text-xs font-bold uppercase tracking-wider text-neutral-500">
+                <span className="text-xs font-bold uppercase tracking-wider text-neutral-500 dark:text-neutral-400">
                   Step 01
                 </span>
-                <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-neutral-950">
+                <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-neutral-950 dark:text-white">
                   Prioritizing Fundamentals over 500+ Grinding
                 </h2>
-                <p className="text-xs sm:text-sm text-neutral-600 leading-relaxed">
+                <p className="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">
                   While comprehensive DSA sheets are valuable, solving hundreds of advanced graph and DP questions is not necessary for most campus rounds. Prioritizing core patterns gives higher confidence and retention.
                 </p>
               </div>
 
               {/* Comparison Switcher */}
-              <div className="p-5 rounded-2xl bg-white border border-neutral-200/90 shadow-2xs space-y-4">
+              <div className="p-5 rounded-2xl bg-white dark:bg-neutral-900 border border-neutral-200/90 dark:border-neutral-800 shadow-2xs space-y-4">
                 <div className="flex items-center justify-between flex-wrap gap-2">
-                  <span className="text-xs font-bold text-neutral-900">Compare Approach:</span>
-                  <div className="inline-flex p-1 rounded-xl bg-neutral-100">
+                  <span className="text-xs font-bold text-neutral-900 dark:text-white">Compare Approach:</span>
+                  <div className="inline-flex p-1 rounded-xl bg-neutral-100 dark:bg-neutral-800">
                     <button
                       onClick={() => setComparisonMode("strategic")}
                       className={`px-3 py-1 rounded-lg text-xs font-semibold transition-all cursor-pointer ${
                         comparisonMode === "strategic"
-                          ? "bg-white text-neutral-950 shadow-xs"
-                          : "text-neutral-600 hover:text-neutral-950"
+                          ? "bg-white dark:bg-neutral-950 text-neutral-950 dark:text-white shadow-xs"
+                          : "text-neutral-600 dark:text-neutral-400 hover:text-neutral-950 dark:hover:text-white"
                       }`}
                     >
                       Strategic (150+ Core)
@@ -265,8 +260,8 @@ export const PlacementStoryView: React.FC<PlacementStoryViewProps> = ({
                       onClick={() => setComparisonMode("exhaustive")}
                       className={`px-3 py-1 rounded-lg text-xs font-semibold transition-all cursor-pointer ${
                         comparisonMode === "exhaustive"
-                          ? "bg-white text-neutral-950 shadow-xs"
-                          : "text-neutral-600 hover:text-neutral-950"
+                          ? "bg-white dark:bg-neutral-950 text-neutral-950 dark:text-white shadow-xs"
+                          : "text-neutral-600 dark:text-neutral-400 hover:text-neutral-950 dark:hover:text-white"
                       }`}
                     >
                       Exhaustive 500+ Grind
@@ -276,42 +271,42 @@ export const PlacementStoryView: React.FC<PlacementStoryViewProps> = ({
 
                 {comparisonMode === "strategic" ? (
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-xs">
-                    <div className="p-3 rounded-xl bg-neutral-50 border border-neutral-200/70 space-y-1">
-                      <p className="font-bold text-neutral-950 flex items-center gap-1.5">
-                        <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
+                    <div className="p-3 rounded-xl bg-neutral-50 dark:bg-neutral-800/80 border border-neutral-200/70 dark:border-neutral-700 space-y-1">
+                      <p className="font-bold text-neutral-950 dark:text-white flex items-center gap-1.5">
+                        <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
                         Core DSA Patterns
                       </p>
-                      <p className="text-neutral-500">
+                      <p className="text-neutral-600 dark:text-neutral-400">
                         Arrays, Strings, Two Pointers, HashMaps, and Basic Recursion.
                       </p>
                     </div>
-                    <div className="p-3 rounded-xl bg-neutral-50 border border-neutral-200/70 space-y-1">
-                      <p className="font-bold text-neutral-950 flex items-center gap-1.5">
-                        <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
+                    <div className="p-3 rounded-xl bg-neutral-50 dark:bg-neutral-800/80 border border-neutral-200/70 dark:border-neutral-700 space-y-1">
+                      <p className="font-bold text-neutral-950 dark:text-white flex items-center gap-1.5">
+                        <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
                         Solid CS Core &amp; SQL
                       </p>
-                      <p className="text-neutral-500">
+                      <p className="text-neutral-600 dark:text-neutral-400">
                         Fluent in OOP concepts, DBMS, and Easy-to-Medium SQL joins.
                       </p>
                     </div>
                   </div>
                 ) : (
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-xs text-neutral-600">
-                    <div className="p-3 rounded-xl bg-neutral-50 border border-neutral-200/70 space-y-1">
-                      <p className="font-bold text-neutral-800 flex items-center gap-1.5">
-                        <HelpCircle className="w-3.5 h-3.5 text-neutral-400" />
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-xs text-neutral-600 dark:text-neutral-400">
+                    <div className="p-3 rounded-xl bg-neutral-50 dark:bg-neutral-800/80 border border-neutral-200/70 dark:border-neutral-700 space-y-1">
+                      <p className="font-bold text-neutral-800 dark:text-neutral-200 flex items-center gap-1.5">
+                        <HelpCircle className="w-3.5 h-3.5 text-neutral-400 dark:text-neutral-500" />
                         Over-emphasis on Rare Topics
                       </p>
-                      <p className="text-neutral-500">
+                      <p className="text-neutral-500 dark:text-neutral-400">
                         Weeks spent on Segment Trees and 3D DP rarely asked in mass drives.
                       </p>
                     </div>
-                    <div className="p-3 rounded-xl bg-neutral-50 border border-neutral-200/70 space-y-1">
-                      <p className="font-bold text-neutral-800 flex items-center gap-1.5">
-                        <HelpCircle className="w-3.5 h-3.5 text-neutral-400" />
+                    <div className="p-3 rounded-xl bg-neutral-50 dark:bg-neutral-800/80 border border-neutral-200/70 dark:border-neutral-700 space-y-1">
+                      <p className="font-bold text-neutral-800 dark:text-neutral-200 flex items-center gap-1.5">
+                        <HelpCircle className="w-3.5 h-3.5 text-neutral-400 dark:text-neutral-500" />
                         Neglecting Project Defense
                       </p>
-                      <p className="text-neutral-500">
+                      <p className="text-neutral-500 dark:text-neutral-400">
                         Stumbling when asked why a specific database or auth flow was selected.
                       </p>
                     </div>
@@ -321,15 +316,15 @@ export const PlacementStoryView: React.FC<PlacementStoryViewProps> = ({
             </section>
 
             {/* 3. DSA ROADMAP */}
-            <section id="dsa-roadmap" className="space-y-4 scroll-mt-24 pt-4 border-t border-neutral-100">
+            <section id="dsa-roadmap" className="space-y-4 scroll-mt-24 pt-4 border-t border-neutral-100 dark:border-neutral-800">
               <div className="space-y-1">
-                <span className="text-xs font-bold uppercase tracking-wider text-neutral-500">
+                <span className="text-xs font-bold uppercase tracking-wider text-neutral-500 dark:text-neutral-400">
                   Step 02
                 </span>
-                <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-neutral-950">
+                <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-neutral-950 dark:text-white">
                   DSA Topic Priority Hierarchy
                 </h2>
-                <p className="text-xs sm:text-sm text-neutral-600 leading-relaxed">
+                <p className="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">
                   Focus your practice starting from high-frequency topics at the top before moving down.
                 </p>
               </div>
@@ -361,20 +356,20 @@ export const PlacementStoryView: React.FC<PlacementStoryViewProps> = ({
                     ],
                   },
                 ].map((group) => (
-                  <div key={group.tier} className="p-4 rounded-xl bg-white border border-neutral-200/90 shadow-2xs space-y-2">
-                    <span className="text-xs font-bold text-neutral-800 uppercase tracking-wider">
+                  <div key={group.tier} className="p-4 rounded-xl bg-white dark:bg-neutral-900 border border-neutral-200/90 dark:border-neutral-800 shadow-2xs space-y-2">
+                    <span className="text-xs font-bold text-neutral-800 dark:text-neutral-200 uppercase tracking-wider">
                       {group.tier}
                     </span>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                       {group.topics.map((t) => (
-                        <div key={t.name} className="p-2.5 rounded-lg bg-neutral-50 border border-neutral-200/70 text-xs">
+                        <div key={t.name} className="p-2.5 rounded-lg bg-neutral-50 dark:bg-neutral-800/80 border border-neutral-200/70 dark:border-neutral-700 text-xs">
                           <div className="flex items-center justify-between mb-0.5">
-                            <span className="font-bold text-neutral-900">{t.name}</span>
-                            <span className="text-[10px] font-semibold text-neutral-600 bg-neutral-200/70 px-1.5 py-0.5 rounded">
+                            <span className="font-bold text-neutral-900 dark:text-white">{t.name}</span>
+                            <span className="text-[10px] font-semibold text-neutral-700 dark:text-neutral-300 bg-neutral-200/70 dark:bg-neutral-700/80 px-1.5 py-0.5 rounded">
                               {t.badge}
                             </span>
                           </div>
-                          <p className="text-[11px] text-neutral-500">{t.desc}</p>
+                          <p className="text-[11px] text-neutral-600 dark:text-neutral-400">{t.desc}</p>
                         </div>
                       ))}
                     </div>
@@ -384,36 +379,36 @@ export const PlacementStoryView: React.FC<PlacementStoryViewProps> = ({
             </section>
 
             {/* 4. LANGUAGES */}
-            <section id="languages" className="space-y-4 scroll-mt-24 pt-4 border-t border-neutral-100">
+            <section id="languages" className="space-y-4 scroll-mt-24 pt-4 border-t border-neutral-100 dark:border-neutral-800">
               <div className="space-y-1">
-                <span className="text-xs font-bold uppercase tracking-wider text-neutral-500">
+                <span className="text-xs font-bold uppercase tracking-wider text-neutral-500 dark:text-neutral-400">
                   Step 03
                 </span>
-                <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-neutral-950">
+                <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-neutral-950 dark:text-white">
                   Mastering Your Core Language
                 </h2>
-                <p className="text-xs sm:text-sm text-neutral-600 leading-relaxed">
+                <p className="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">
                   Deep mastery in one or two languages matters more than basic syntax across five.
                 </p>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                <div className="p-4 rounded-xl bg-white border border-neutral-200/90 shadow-2xs space-y-2">
-                  <div className="flex items-center gap-2 font-bold text-xs text-neutral-950">
-                    <span className="p-1.5 rounded-lg bg-neutral-100">☕</span> Java
+                <div className="p-4 rounded-xl bg-white dark:bg-neutral-900 border border-neutral-200/90 dark:border-neutral-800 shadow-2xs space-y-2">
+                  <div className="flex items-center gap-2 font-bold text-xs text-neutral-950 dark:text-white">
+                    <span className="p-1.5 rounded-lg bg-neutral-100 dark:bg-neutral-800">☕</span> Java
                   </div>
-                  <ul className="text-xs text-neutral-600 space-y-1">
+                  <ul className="text-xs text-neutral-600 dark:text-neutral-400 space-y-1">
                     <li>• Collections Framework (`HashMap`, `ArrayList`, `Stack`)</li>
                     <li>• OOP mechanics: Inheritance, Polymorphism, Interfaces</li>
                     <li>• Memory model (Stack vs Heap)</li>
                   </ul>
                 </div>
 
-                <div className="p-4 rounded-xl bg-white border border-neutral-200/90 shadow-2xs space-y-2">
-                  <div className="flex items-center gap-2 font-bold text-xs text-neutral-950">
-                    <span className="p-1.5 rounded-lg bg-neutral-100">🐍</span> Python
+                <div className="p-4 rounded-xl bg-white dark:bg-neutral-900 border border-neutral-200/90 dark:border-neutral-800 shadow-2xs space-y-2">
+                  <div className="flex items-center gap-2 font-bold text-xs text-neutral-950 dark:text-white">
+                    <span className="p-1.5 rounded-lg bg-neutral-100 dark:bg-neutral-800">🐍</span> Python
                   </div>
-                  <ul className="text-xs text-neutral-600 space-y-1">
+                  <ul className="text-xs text-neutral-600 dark:text-neutral-400 space-y-1">
                     <li>• List comprehensions, dictionaries, and slicing</li>
                     <li>• Clean string parsing and built-in algorithms</li>
                     <li>• Applied across AI, ML, and API prototyping</li>
@@ -423,21 +418,21 @@ export const PlacementStoryView: React.FC<PlacementStoryViewProps> = ({
             </section>
 
             {/* 5. SQL STRATEGY */}
-            <section id="sql-mastery" className="space-y-4 scroll-mt-24 pt-4 border-t border-neutral-100">
+            <section id="sql-mastery" className="space-y-4 scroll-mt-24 pt-4 border-t border-neutral-100 dark:border-neutral-800">
               <div className="space-y-1">
-                <span className="text-xs font-bold uppercase tracking-wider text-neutral-500">
+                <span className="text-xs font-bold uppercase tracking-wider text-neutral-500 dark:text-neutral-400">
                   Step 04
                 </span>
-                <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-neutral-950">
+                <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-neutral-950 dark:text-white">
                   SQL — Target Easy to Medium Problems
                 </h2>
-                <p className="text-xs sm:text-sm text-neutral-600 leading-relaxed">
-                  SQL is frequently tested in technical interviews. Rather than memorizing queries, focus on solving <span className="font-semibold text-neutral-950">Easy to Medium problem patterns</span> on platforms like LeetCode and HackerRank.
+                <p className="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">
+                  SQL is frequently tested in technical interviews. Rather than memorizing queries, focus on solving <span className="font-semibold text-neutral-950 dark:text-white">Easy to Medium problem patterns</span> on platforms like LeetCode and HackerRank.
                 </p>
               </div>
 
-              <div className="p-5 rounded-2xl bg-white border border-neutral-200/90 shadow-2xs space-y-3">
-                <h3 className="text-xs font-bold uppercase tracking-wider text-neutral-700">
+              <div className="p-5 rounded-2xl bg-white dark:bg-neutral-900 border border-neutral-200/90 dark:border-neutral-800 shadow-2xs space-y-3">
+                <h3 className="text-xs font-bold uppercase tracking-wider text-neutral-700 dark:text-neutral-300">
                   Essential SQL Patterns to Practice:
                 </h3>
                 <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 text-xs">
@@ -449,9 +444,9 @@ export const PlacementStoryView: React.FC<PlacementStoryViewProps> = ({
                     { name: "ORDER BY & LIMIT", desc: "Top-N / rank filtering" },
                     { name: "COUNT & AVG", desc: "Statistical aggregations" },
                   ].map((item) => (
-                    <div key={item.name} className="p-2.5 rounded-lg bg-neutral-50 border border-neutral-200/70">
-                      <p className="font-bold text-neutral-900 font-mono text-[11px]">{item.name}</p>
-                      <p className="text-[10.5px] text-neutral-500">{item.desc}</p>
+                    <div key={item.name} className="p-2.5 rounded-lg bg-neutral-50 dark:bg-neutral-800/80 border border-neutral-200/70 dark:border-neutral-700">
+                      <p className="font-bold text-neutral-900 dark:text-white font-mono text-[11px]">{item.name}</p>
+                      <p className="text-[10.5px] text-neutral-600 dark:text-neutral-400">{item.desc}</p>
                     </div>
                   ))}
                 </div>
@@ -459,15 +454,15 @@ export const PlacementStoryView: React.FC<PlacementStoryViewProps> = ({
             </section>
 
             {/* 6. CS CORE PILLARS */}
-            <section id="cs-core" className="space-y-4 scroll-mt-24 pt-4 border-t border-neutral-100">
+            <section id="cs-core" className="space-y-4 scroll-mt-24 pt-4 border-t border-neutral-100 dark:border-neutral-800">
               <div className="space-y-1">
-                <span className="text-xs font-bold uppercase tracking-wider text-neutral-500">
+                <span className="text-xs font-bold uppercase tracking-wider text-neutral-500 dark:text-neutral-400">
                   Step 05
                 </span>
-                <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-neutral-950">
+                <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-neutral-950 dark:text-white">
                   The Four Pillars of CS Core
                 </h2>
-                <p className="text-xs sm:text-sm text-neutral-600 leading-relaxed">
+                <p className="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">
                   Interviewers frequently ask direct conceptual questions from standard computer science subjects.
                 </p>
               </div>
@@ -484,8 +479,8 @@ export const PlacementStoryView: React.FC<PlacementStoryViewProps> = ({
                     onClick={() => setActiveCsPillar(pillar.id)}
                     className={`flex items-center justify-center gap-1.5 p-2.5 rounded-xl text-xs font-semibold transition-all cursor-pointer ${
                       activeCsPillar === pillar.id
-                        ? "bg-neutral-950 text-white shadow-xs"
-                        : "bg-neutral-100 text-neutral-700 hover:bg-neutral-200"
+                        ? "bg-neutral-950 text-white dark:bg-white dark:text-neutral-950 shadow-xs"
+                        : "bg-neutral-100 dark:bg-neutral-800 text-neutral-800 dark:text-neutral-200 hover:bg-neutral-200 dark:hover:bg-neutral-700"
                     }`}
                   >
                     {pillar.icon}
@@ -494,40 +489,40 @@ export const PlacementStoryView: React.FC<PlacementStoryViewProps> = ({
                 ))}
               </div>
 
-              <div className="p-4 rounded-xl bg-white border border-neutral-200/90 shadow-2xs text-xs text-neutral-700">
+              <div className="p-4 rounded-xl bg-white dark:bg-neutral-900 border border-neutral-200/90 dark:border-neutral-800 shadow-2xs text-xs text-neutral-700 dark:text-neutral-300">
                 {activeCsPillar === "oop" && (
                   <p>
-                    <span className="font-bold text-neutral-950">OOP:</span> Encapsulation, Abstraction (interfaces vs abstract classes), Inheritance, and Polymorphism (overloading vs overriding).
+                    <span className="font-bold text-neutral-950 dark:text-white">OOP:</span> Encapsulation, Abstraction (interfaces vs abstract classes), Inheritance, and Polymorphism (overloading vs overriding).
                   </p>
                 )}
                 {activeCsPillar === "dbms" && (
                   <p>
-                    <span className="font-bold text-neutral-950">DBMS:</span> ACID properties, Normalization (1NF to 3NF), Primary vs Foreign Keys, Indexing, and Transaction locks.
+                    <span className="font-bold text-neutral-950 dark:text-white">DBMS:</span> ACID properties, Normalization (1NF to 3NF), Primary vs Foreign Keys, Indexing, and Transaction locks.
                   </p>
                 )}
                 {activeCsPillar === "os" && (
                   <p>
-                    <span className="font-bold text-neutral-950">OS:</span> Processes vs Threads, Context Switching, Deadlock conditions (Coffman), Virtual Memory, and Paging.
+                    <span className="font-bold text-neutral-950 dark:text-white">OS:</span> Processes vs Threads, Context Switching, Deadlock conditions (Coffman), Virtual Memory, and Paging.
                   </p>
                 )}
                 {activeCsPillar === "cn" && (
                   <p>
-                    <span className="font-bold text-neutral-950">Networks:</span> OSI / TCP-IP model layers, TCP 3-way handshake, UDP vs TCP, HTTP/HTTPS, and DNS resolution.
+                    <span className="font-bold text-neutral-950 dark:text-white">Networks:</span> OSI / TCP-IP model layers, TCP 3-way handshake, UDP vs TCP, HTTP/HTTPS, and DNS resolution.
                   </p>
                 )}
               </div>
             </section>
 
             {/* 7. PROJECT DEFENSE */}
-            <section id="project-deepdive" className="space-y-4 scroll-mt-24 pt-4 border-t border-neutral-100">
+            <section id="project-deepdive" className="space-y-4 scroll-mt-24 pt-4 border-t border-neutral-100 dark:border-neutral-800">
               <div className="space-y-1">
-                <span className="text-xs font-bold uppercase tracking-wider text-neutral-500">
+                <span className="text-xs font-bold uppercase tracking-wider text-neutral-500 dark:text-neutral-400">
                   Step 06
                 </span>
-                <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-neutral-950">
+                <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-neutral-950 dark:text-white">
                   Projects — &ldquo;Know What You Built&rdquo;
                 </h2>
-                <p className="text-xs sm:text-sm text-neutral-600 leading-relaxed">
+                <p className="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">
                   Don&apos;t memorize a summary. Understand your project&apos;s architecture, database decisions, and real error-handling trade-offs.
                 </p>
               </div>
@@ -549,16 +544,16 @@ export const PlacementStoryView: React.FC<PlacementStoryViewProps> = ({
                 ].map((item, idx) => {
                   const isOpen = activeProjectQuestion === idx;
                   return (
-                    <div key={item.q} className="border border-neutral-200/90 rounded-xl bg-white overflow-hidden shadow-2xs">
+                    <div key={item.q} className="border border-neutral-200/90 dark:border-neutral-800 rounded-xl bg-white dark:bg-neutral-900 overflow-hidden shadow-2xs">
                       <button
                         onClick={() => setActiveProjectQuestion(isOpen ? null : idx)}
-                        className="w-full p-3.5 text-left flex items-center justify-between text-xs font-bold text-neutral-950 hover:bg-neutral-50 cursor-pointer"
+                        className="w-full p-3.5 text-left flex items-center justify-between text-xs font-bold text-neutral-950 dark:text-white hover:bg-neutral-50 dark:hover:bg-neutral-800/50 cursor-pointer"
                       >
                         <span>{item.q}</span>
                         {isOpen ? <ChevronUp className="w-3.5 h-3.5 text-neutral-400" /> : <ChevronDown className="w-3.5 h-3.5 text-neutral-400" />}
                       </button>
                       {isOpen && (
-                        <div className="p-3.5 pt-0 text-xs text-neutral-600 border-t border-neutral-100 bg-neutral-50/50">
+                        <div className="p-3.5 pt-0 text-xs text-neutral-600 dark:text-neutral-400 border-t border-neutral-100 dark:border-neutral-800 bg-neutral-50/50 dark:bg-neutral-950/50">
                           <p className="pt-2">{item.a}</p>
                         </div>
                       )}
@@ -569,26 +564,26 @@ export const PlacementStoryView: React.FC<PlacementStoryViewProps> = ({
             </section>
 
             {/* 8. INTERVIEW ROUNDS */}
-            <section id="interview-day" className="space-y-4 scroll-mt-24 pt-4 border-t border-neutral-100">
+            <section id="interview-day" className="space-y-4 scroll-mt-24 pt-4 border-t border-neutral-100 dark:border-neutral-800">
               <div className="space-y-1">
-                <span className="text-xs font-bold uppercase tracking-wider text-neutral-500">
+                <span className="text-xs font-bold uppercase tracking-wider text-neutral-500 dark:text-neutral-400">
                   Step 07
                 </span>
-                <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-neutral-950">
+                <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-neutral-950 dark:text-white">
                   The Interview Day Breakdown
                 </h2>
-                <p className="text-xs sm:text-sm text-neutral-600 leading-relaxed">
+                <p className="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">
                   Campus recruitment transitions through Technical evaluation and Behavioral fitment.
                 </p>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 {/* Technical Round */}
-                <div className="p-4.5 rounded-2xl bg-white border border-neutral-200/90 shadow-2xs space-y-2">
-                  <span className="text-xs font-bold text-neutral-900 block">
+                <div className="p-4.5 rounded-2xl bg-white dark:bg-neutral-900 border border-neutral-200/90 dark:border-neutral-800 shadow-2xs space-y-2">
+                  <span className="text-xs font-bold text-neutral-950 dark:text-white block">
                     Technical Round Checklist
                   </span>
-                  <ul className="text-xs text-neutral-600 space-y-1">
+                  <ul className="text-xs text-neutral-600 dark:text-neutral-400 space-y-1">
                     <li>• Explain logic out loud before typing code</li>
                     <li>• Discuss Time and Space complexities ($O(N)$ vs $O(N^2)$)</li>
                     <li>• Write clean SQL joins and group queries</li>
@@ -597,11 +592,11 @@ export const PlacementStoryView: React.FC<PlacementStoryViewProps> = ({
                 </div>
 
                 {/* HR Round */}
-                <div className="p-4.5 rounded-2xl bg-white border border-neutral-200/90 shadow-2xs space-y-2">
-                  <span className="text-xs font-bold text-neutral-900 block">
+                <div className="p-4.5 rounded-2xl bg-white dark:bg-neutral-900 border border-neutral-200/90 dark:border-neutral-800 shadow-2xs space-y-2">
+                  <span className="text-xs font-bold text-neutral-950 dark:text-white block">
                     HR &amp; Behavioral Round Focus
                   </span>
-                  <ul className="text-xs text-neutral-600 space-y-1">
+                  <ul className="text-xs text-neutral-600 dark:text-neutral-400 space-y-1">
                     <li>• Crisp 90-second introduction highlighting tech and sports ethos</li>
                     <li>• Handling teamwork challenges constructively</li>
                     <li>• Concrete research on company service domains and culture</li>
@@ -612,43 +607,43 @@ export const PlacementStoryView: React.FC<PlacementStoryViewProps> = ({
             </section>
 
             {/* 9. RESOURCES */}
-            <section id="resources" className="space-y-4 scroll-mt-24 pt-4 border-t border-neutral-100">
+            <section id="resources" className="space-y-4 scroll-mt-24 pt-4 border-t border-neutral-100 dark:border-neutral-800">
               <div className="space-y-1">
-                <span className="text-xs font-bold uppercase tracking-wider text-neutral-500">
+                <span className="text-xs font-bold uppercase tracking-wider text-neutral-500 dark:text-neutral-400">
                   Step 08
                 </span>
-                <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-neutral-950">
+                <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-neutral-950 dark:text-white">
                   Curated Resources
                 </h2>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 text-xs">
-                <div className="p-3 rounded-xl bg-white border border-neutral-200/90 shadow-2xs">
-                  <p className="font-bold text-neutral-950">Striver A2Z Sheet</p>
-                  <p className="text-neutral-500 text-[11px]">Pattern recognition and foundational problem lists.</p>
+                <div className="p-3 rounded-xl bg-white dark:bg-neutral-900 border border-neutral-200/90 dark:border-neutral-800 shadow-2xs">
+                  <p className="font-bold text-neutral-950 dark:text-white">Striver A2Z Sheet</p>
+                  <p className="text-neutral-600 dark:text-neutral-400 text-[11px]">Pattern recognition and foundational problem lists.</p>
                 </div>
-                <div className="p-3 rounded-xl bg-white border border-neutral-200/90 shadow-2xs">
-                  <p className="font-bold text-neutral-950">LeetCode &amp; GFG</p>
-                  <p className="text-neutral-500 text-[11px]">Easy-to-medium company-tagged practice.</p>
+                <div className="p-3 rounded-xl bg-white dark:bg-neutral-900 border border-neutral-200/90 dark:border-neutral-800 shadow-2xs">
+                  <p className="font-bold text-neutral-950 dark:text-white">LeetCode &amp; GFG</p>
+                  <p className="text-neutral-600 dark:text-neutral-400 text-[11px]">Easy-to-medium company-tagged practice.</p>
                 </div>
-                <div className="p-3 rounded-xl bg-white border border-neutral-200/90 shadow-2xs">
-                  <p className="font-bold text-neutral-950">HackerRank SQL</p>
-                  <p className="text-neutral-500 text-[11px]">Hands-on practice with joins and aggregations.</p>
+                <div className="p-3 rounded-xl bg-white dark:bg-neutral-900 border border-neutral-200/90 dark:border-neutral-800 shadow-2xs">
+                  <p className="font-bold text-neutral-950 dark:text-white">HackerRank SQL</p>
+                  <p className="text-neutral-600 dark:text-neutral-400 text-[11px]">Hands-on practice with joins and aggregations.</p>
                 </div>
               </div>
             </section>
 
             {/* 10. WHAT MATTERED & CONCLUSION */}
-            <section id="formula" className="space-y-6 scroll-mt-24 pt-4 border-t border-neutral-100">
-              <div className="p-6 sm:p-8 rounded-3xl bg-white border border-neutral-200/90 shadow-xs space-y-4 text-center">
-                <span className="text-xs font-bold uppercase tracking-wider text-neutral-500">
+            <section id="formula" className="space-y-6 scroll-mt-24 pt-4 border-t border-neutral-100 dark:border-neutral-800">
+              <div className="p-6 sm:p-8 rounded-3xl bg-white dark:bg-neutral-900 border border-neutral-200/90 dark:border-neutral-800 shadow-xs space-y-4 text-center">
+                <span className="text-xs font-bold uppercase tracking-wider text-neutral-500 dark:text-neutral-400">
                   The Final Takeaway
                 </span>
-                <blockquote className="text-base sm:text-lg font-semibold text-neutral-950 italic max-w-2xl mx-auto leading-relaxed">
+                <blockquote className="text-base sm:text-lg font-semibold text-neutral-950 dark:text-white italic max-w-2xl mx-auto leading-relaxed">
                   &ldquo;You don&apos;t always need to know everything. You need to know the right fundamentals deeply enough to explain, apply, and defend them.&rdquo;
                 </blockquote>
-                <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-neutral-100 text-neutral-800 text-xs font-medium">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
+                <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-neutral-100 dark:bg-neutral-800 text-neutral-800 dark:text-neutral-200 text-xs font-medium border border-neutral-200/70 dark:border-neutral-700">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
                   Result: Dual Placement Offers at Cognizant &amp; LTIMindtree
                 </div>
               </div>

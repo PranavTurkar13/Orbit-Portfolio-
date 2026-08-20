@@ -1,46 +1,43 @@
-# Memory — About Page & Certifications
+# Memory — Light & Dark Theme System
 
-Last updated: 2026-08-19 12:28 IST
+Last updated: 2026-08-20 15:44 IST
 
 ## What was built
 
-- **About Page (`app/about/page.tsx`)**:
-  - 2-Column Hero layout with Pranav's real photo (`public/pranav.jpg`), bio narrative, and 2x2 Quick Info cards (Pune, B.E. IT 9.09 CGPA, Cognizant & LTIMindtree, Flip-Flop Winner • 150+ DSA).
-  - Connected vertical timeline component for Education & Experience (B.E. IT 9.09 CGPA at P.E.S. MCOE, Class 12th HSC 81.67% + 94.04 %ile CET at Raj Jr College, Class 10th SSC 91.00% at YPS, NSS Volunteer & Camp Leadership).
-  - Certifications & Training section (`data/certifications.ts`) with direct "View PDF" links for:
-    1. Advanced MERN Development (Infosys Springboard)
-    2. Python Full Stack Developer Virtual Internship (AICTE EduSkills)
-    3. Cloud Computing with AWS (Internshala Trainings)
-    4. Basics of Python (Infosys Springboard)
-  - Stored verified PDF certificates in `/public/certificates/`.
-  - "Things I Love" section covering Football & CR7, Cricket, Gaming Era (GTA, Minecraft, Fall Guys, Granny), Anime & Cinema (AoT, Vinland Saga, Munna Bhai M.B.B.S.), Python Genesis, and Hackathons.
-  - Final message section with Cristiano Ronaldo SIUUUU code artwork (`public/ronaldo-siuu.jpg`) and forward-looking motto on a clean white theme.
-- **UI Registry (`context/ui-registry.md`)**:
-  - Imprinted `SectionHeading`, `Button`, `TimelineCard`, `QuickFactCard`, `InterestCard`, `ProjectCard`, `SkillCard`, and `CertificationCard` patterns.
+- **Theme Infrastructure (`next-themes`)**:
+  - Created [`components/theme/ThemeProvider.tsx`](file:///Users/pranavturkar/Projects/orbit/components/theme/ThemeProvider.tsx) wrapping `next-themes` with `attribute="class"`, `defaultTheme="system"`, and `enableSystem`.
+  - Created [`components/theme/ThemeToggle.tsx`](file:///Users/pranavturkar/Projects/orbit/components/theme/ThemeToggle.tsx) featuring animated Sun ☀️ / Moon 🌙 toggle icons, `useSyncExternalStore` hydration safety (0 FOUC/flicker), and full keyboard/screen reader accessibility.
+  - Added `suppressHydrationWarning` and `ThemeProvider` to [`app/layout.tsx`](file:///Users/pranavturkar/Projects/orbit/app/layout.tsx).
+- **Tailwind CSS v4 & Global Theme Tokens (`app/globals.css`)**:
+  - Added `@custom-variant dark (&:where(.dark, .dark *));`.
+  - Defined `:root` (light) and `.dark` CSS tokens for background, foreground, muted, borders, and card surfaces (`#09090b` obsidian background, `#27272a` neutral borders).
+  - Configured dark scrollbars, selection highlights, and animated hero grid pattern.
+- **Full Component Dark Theme Adaptation**:
+  - Updated [`components/layout/Navbar.tsx`](file:///Users/pranavturkar/Projects/orbit/components/layout/Navbar.tsx) with desktop & mobile drawer `ThemeToggle` and backdrop blur styling.
+  - Updated [`components/layout/Footer.tsx`](file:///Users/pranavturkar/Projects/orbit/components/layout/Footer.tsx) with dark borders, typography, and social icons.
+  - Updated [`components/ui/Button.tsx`](file:///Users/pranavturkar/Projects/orbit/components/ui/Button.tsx), [`components/ui/Badge.tsx`](file:///Users/pranavturkar/Projects/orbit/components/ui/Badge.tsx), [`components/ui/SectionHeading.tsx`](file:///Users/pranavturkar/Projects/orbit/components/ui/SectionHeading.tsx).
+  - Updated [`app/page.tsx`](file:///Users/pranavturkar/Projects/orbit/app/page.tsx), [`components/projects/ProjectCard.tsx`](file:///Users/pranavturkar/Projects/orbit/components/projects/ProjectCard.tsx), [`components/projects/ProjectsView.tsx`](file:///Users/pranavturkar/Projects/orbit/components/projects/ProjectsView.tsx), [`components/skills/SkillCard.tsx`](file:///Users/pranavturkar/Projects/orbit/components/skills/SkillCard.tsx), [`components/about/AboutView.tsx`](file:///Users/pranavturkar/Projects/orbit/components/about/AboutView.tsx), [`components/contact/ContactView.tsx`](file:///Users/pranavturkar/Projects/orbit/components/contact/ContactView.tsx), and [`components/blog/PlacementStoryView.tsx`](file:///Users/pranavturkar/Projects/orbit/components/blog/PlacementStoryView.tsx).
 
 ## Decisions made
 
-- Kept pure white minimalist theme across all sections of `/about` to ensure visual consistency with the design system.
-- Direct PDF viewing enabled for all credentials rather than relying solely on external verify portals.
-- Maintained strict single source of truth across `data/profile.ts`, `data/certifications.ts`, and `context/portfolio-content.md`.
+- Used standard `next-themes` client provider with class attribute matching Tailwind CSS v4 custom variant for zero-flicker instant render.
+- Maintained strict obsidian/slate minimalist palette in dark mode adhering to recruiter-friendly guidelines in `AGENTS.md`.
+- Implemented `useSyncExternalStore` in `ThemeToggle` to satisfy React 19 concurrent hydration rules without cascading effect re-renders.
 
 ## Problems solved
 
-- Corrected CGPA to verified `9.09/10`.
-- Integrated user-uploaded photos (`pranav.jpg` and `ronaldo-siuu.jpg`) and 4 certificate PDFs with proper static path resolution.
+- Eliminated theme flicker and hydration mismatch errors on reload.
+- Resolved React 19 ESLint hooks rules with 0 errors and 0 warnings.
 
 ## Current state
 
-- **Foundation (`/` & layout)**: 100% complete and responsive.
-- **Home Page (`/`)**: 100% complete with Hero, Projects preview, Skills & Technologies, and CTA.
-- **About Page (`/about`)**: 100% complete, verified with `next build` (0 errors) and `eslint` (0 warnings).
+- **Theme Engine**: 100% complete and verified across all routes (`/`, `/about`, `/projects`, `/blog`, `/contact`).
+- **Build Status**: Verified with `next build` (0 errors) and `eslint` (0 warnings).
 
 ## Next session starts with
 
-- **Phase 4: Projects Page (`/projects`)**:
-  - Implement `/app/projects/page.tsx` with interactive category tabs (`All`, `AI / LLM`, `Full Stack`).
-  - Render verified project cards for **JobPilot**, **Student Placement Portal (CSPS)**, and **Prescripto** with direct live demo and GitHub repository links.
+- Continue feature development or content expansions as requested.
 
 ## Open questions
 
-- None. Ready to proceed to `/projects`.
+- None.

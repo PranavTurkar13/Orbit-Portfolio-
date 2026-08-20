@@ -21,50 +21,50 @@ export const Footer: React.FC = () => {
   };
 
   return (
-    <footer className="w-full bg-white border-t border-neutral-200/80 pt-16 pb-12 mt-20">
+    <footer className="w-full bg-white dark:bg-neutral-950 border-t border-neutral-200/80 dark:border-neutral-800/80 pt-16 pb-12 mt-20 transition-colors">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-10 lg:gap-12 pb-12 border-b border-neutral-100">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-10 lg:gap-12 pb-12 border-b border-neutral-100 dark:border-neutral-800/80">
           {/* Brand & Bio */}
           <div className="md:col-span-5 space-y-4">
             <Link
               href="/"
-              className="text-lg font-bold tracking-tight text-neutral-950 inline-block hover:opacity-80 transition-opacity"
+              className="text-lg font-bold tracking-tight text-neutral-950 dark:text-white inline-block hover:opacity-80 transition-opacity"
             >
               &lt;<span className="font-semibold">{profile.shortName}</span> /&gt;
             </Link>
-            <p className="text-sm text-neutral-600 leading-relaxed max-w-sm">
+            <p className="text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed max-w-sm">
               Information Technology graduate building full-stack applications and exploring LLM-powered applications.
             </p>
           </div>
 
           {/* Quick Links */}
           <div className="md:col-span-3 space-y-3">
-            <h3 className="text-sm font-semibold text-neutral-950 tracking-wide">
+            <h3 className="text-sm font-semibold text-neutral-950 dark:text-neutral-200 tracking-wide">
               Quick Links
             </h3>
-            <ul className="space-y-2 text-sm text-neutral-600">
+            <ul className="space-y-2 text-sm text-neutral-600 dark:text-neutral-400">
               <li>
-                <Link href="/" className="hover:text-neutral-950 transition-colors">
+                <Link href="/" className="hover:text-neutral-950 dark:hover:text-white transition-colors">
                   Home
                 </Link>
               </li>
               <li>
-                <Link href="/about" className="hover:text-neutral-950 transition-colors">
+                <Link href="/about" className="hover:text-neutral-950 dark:hover:text-white transition-colors">
                   About
                 </Link>
               </li>
               <li>
-                <Link href="/projects" className="hover:text-neutral-950 transition-colors">
+                <Link href="/projects" className="hover:text-neutral-950 dark:hover:text-white transition-colors">
                   Projects
                 </Link>
               </li>
               <li>
-                <Link href="/blog" className="hover:text-neutral-950 transition-colors">
+                <Link href="/blog" className="hover:text-neutral-950 dark:hover:text-white transition-colors">
                   Blog
                 </Link>
               </li>
               <li>
-                <Link href="/contact" className="hover:text-neutral-950 transition-colors">
+                <Link href="/contact" className="hover:text-neutral-950 dark:hover:text-white transition-colors">
                   Contact
                 </Link>
               </li>
@@ -73,15 +73,15 @@ export const Footer: React.FC = () => {
 
           {/* Contact Details */}
           <div className="md:col-span-4 space-y-3">
-            <h3 className="text-sm font-semibold text-neutral-950 tracking-wide">
+            <h3 className="text-sm font-semibold text-neutral-950 dark:text-neutral-200 tracking-wide">
               Contact
             </h3>
-            <div className="space-y-2 text-sm text-neutral-600">
+            <div className="space-y-2 text-sm text-neutral-600 dark:text-neutral-400">
               <p>{profile.location}</p>
               <p>
                 <a
                   href={`mailto:${profile.email}`}
-                  className="text-neutral-900 font-medium hover:underline"
+                  className="text-neutral-900 dark:text-neutral-200 font-medium hover:underline"
                 >
                   {profile.email}
                 </a>
@@ -91,7 +91,7 @@ export const Footer: React.FC = () => {
         </div>
 
         {/* Bottom bar */}
-        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-neutral-500">
+        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-neutral-500 dark:text-neutral-500">
           <div className="flex items-center gap-4">
             {socialLinks.map((item) => (
               <a
@@ -100,7 +100,7 @@ export const Footer: React.FC = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={item.label}
-                className="text-neutral-500 hover:text-neutral-950 transition-colors p-1"
+                className="text-neutral-500 dark:text-neutral-400 hover:text-neutral-950 dark:hover:text-white transition-colors p-1"
               >
                 {getSocialIcon(item.icon)}
               </a>

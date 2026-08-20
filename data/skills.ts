@@ -14,7 +14,7 @@ export const skillCategories: SkillCategory[] = [
   {
     category: "Languages",
     iconName: "terminal",
-    animationDelayClass: "",
+    animationDelayClass: "animate-float-slow",
     skills: [
       { name: "Python", symbol: "🐍" },
       { name: "Java", symbol: "☕" },
@@ -60,7 +60,7 @@ export const skillCategories: SkillCategory[] = [
   {
     category: "AI & LLM",
     iconName: "sparkles",
-    animationDelayClass: "",
+    animationDelayClass: "animate-float-delayed",
     skills: [
       { name: "Gemini API", symbol: "✦" },
       { name: "OpenAI API", symbol: "✹" },
@@ -73,7 +73,7 @@ export const skillCategories: SkillCategory[] = [
   {
     category: "Tools",
     iconName: "wrench",
-    animationDelayClass: "animate-float-delayed",
+    animationDelayClass: "animate-float-alt",
     skills: [
       { name: "Git", symbol: "⎇" },
       { name: "GitHub", symbol: "🐙" },

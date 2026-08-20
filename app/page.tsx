@@ -36,7 +36,7 @@ export default function HomePage() {
         <div className="absolute inset-0 pointer-events-none hero-grid-animated" aria-hidden="true" />
 
         {/* Very Faint Floating Code Symbols (3-5% Opacity) */}
-        <div className="absolute inset-0 pointer-events-none select-none overflow-hidden font-mono text-neutral-900/5 font-semibold text-lg sm:text-2xl" aria-hidden="true">
+        <div className="absolute inset-0 pointer-events-none select-none overflow-hidden font-mono text-neutral-900/5 dark:text-white/5 font-semibold text-lg sm:text-2xl" aria-hidden="true">
           <span className="absolute top-10 left-[8%] animate-float-symbol-1 text-2xl sm:text-3xl">&lt; /&gt;</span>
           <span className="absolute top-14 right-[10%] animate-float-symbol-2 text-2xl sm:text-3xl">&#123; &#125;</span>
           <span className="absolute top-[42%] left-[6%] animate-float-symbol-3 text-xl sm:text-2xl">01</span>
@@ -50,23 +50,23 @@ export default function HomePage() {
         <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col items-center text-center max-w-3xl mx-auto">
             {/* Eyebrow */}
-            <span className="text-xs sm:text-xs font-semibold uppercase tracking-[0.25em] text-neutral-500 mb-6">
+            <span className="text-xs sm:text-xs font-semibold uppercase tracking-[0.25em] text-neutral-500 dark:text-neutral-400 mb-6">
               WELCOME TO MY PORTFOLIO
             </span>
 
             {/* Main Heading */}
-            <h1 className="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-neutral-950 mb-3">
+            <h1 className="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-neutral-950 dark:text-white mb-3">
               Hi, I&apos;m {profile.shortName}{" "}
               <span className="animate-wave select-none">👋</span>
             </h1>
 
             {/* Role / Subtitle */}
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-semibold text-neutral-600 tracking-tight mb-6">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-semibold text-neutral-600 dark:text-neutral-400 tracking-tight mb-6">
               {profile.title}
             </h2>
 
             {/* Description */}
-            <p className="text-base sm:text-lg text-neutral-600 leading-relaxed max-w-2xl mb-8">
+            <p className="text-base sm:text-lg text-neutral-600 dark:text-neutral-400 leading-relaxed max-w-2xl mb-8">
               {profile.heroDescription}
             </p>
 
@@ -81,7 +81,7 @@ export default function HomePage() {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={item.label}
-                    className="p-3 rounded-full border border-neutral-200 bg-white text-neutral-700 hover:text-neutral-950 hover:border-neutral-400 hover:shadow-xs transition-all duration-150"
+                    className="p-3 rounded-full border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900/80 text-neutral-700 dark:text-neutral-300 hover:text-neutral-950 dark:hover:text-white hover:border-neutral-400 dark:hover:border-neutral-700 hover:shadow-xs transition-all duration-150"
                   >
                     {getSocialIcon(item.icon)}
                   </a>
@@ -121,7 +121,7 @@ export default function HomePage() {
       {/* 2. FEATURED PROJECTS SECTION */}
       <section
         id="featured-projects"
-        className="py-20 sm:py-28 bg-neutral-50/50 border-t border-neutral-100 scroll-mt-16"
+        className="py-20 sm:py-28 bg-neutral-50/50 dark:bg-neutral-900/30 border-t border-neutral-100 dark:border-neutral-800/80 scroll-mt-16 transition-colors"
       >
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeading
@@ -131,7 +131,7 @@ export default function HomePage() {
             action={
               <Link
                 href="/projects"
-                className="inline-flex items-center gap-1.5 text-sm font-semibold text-neutral-900 hover:text-neutral-600 transition-colors"
+                className="inline-flex items-center gap-1.5 text-sm font-semibold text-neutral-900 dark:text-neutral-200 hover:text-neutral-600 dark:hover:text-neutral-400 transition-colors"
               >
                 View all <ArrowRight className="w-4 h-4" />
               </Link>
@@ -147,7 +147,7 @@ export default function HomePage() {
       </section>
 
       {/* 3. SKILLS & TECHNOLOGIES SECTION */}
-      <section className="py-20 sm:py-28 bg-white border-t border-neutral-100">
+      <section className="py-20 sm:py-28 bg-white dark:bg-neutral-950 border-t border-neutral-100 dark:border-neutral-800/80 transition-colors">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeading
             eyebrow="WHAT I WORK WITH"
@@ -164,18 +164,18 @@ export default function HomePage() {
       </section>
 
       {/* 4. LET'S COLLABORATE / CTA SECTION */}
-      <section className="py-20 sm:py-28 bg-neutral-50/70 border-t border-neutral-100">
+      <section className="py-20 sm:py-28 bg-neutral-50/70 dark:bg-neutral-900/40 border-t border-neutral-100 dark:border-neutral-800/80 transition-colors">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col items-center text-center max-w-2xl mx-auto">
-            <span className="text-xs font-semibold uppercase tracking-[0.25em] text-neutral-500 mb-4">
+            <span className="text-xs font-semibold uppercase tracking-[0.25em] text-neutral-500 dark:text-neutral-400 mb-4">
               LET&apos;S COLLABORATE
             </span>
 
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-neutral-950 mb-4">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-neutral-950 dark:text-white mb-4">
               Got a project in mind?
             </h2>
 
-            <p className="text-base sm:text-lg text-neutral-600 leading-relaxed mb-8">
+            <p className="text-base sm:text-lg text-neutral-600 dark:text-neutral-400 leading-relaxed mb-8">
               I&apos;m always open to discussing new opportunities, interesting
               projects, or technical collaborations. Reach out and let&apos;s build
               something great together.
@@ -205,18 +205,18 @@ export default function HomePage() {
       </section>
 
       {/* 5. PERSONAL ETHOS / RELENTLESS MINDSET MESSAGE */}
-      <section className="py-16 sm:py-20 bg-white border-t border-neutral-100">
+      <section className="py-16 sm:py-20 bg-white dark:bg-neutral-950 border-t border-neutral-100 dark:border-neutral-800/80 transition-colors">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-4">
-          <span className="text-xs font-bold uppercase tracking-widest text-neutral-400">
+          <span className="text-xs font-bold uppercase tracking-widest text-neutral-400 dark:text-neutral-500">
             PERSONAL ETHOS &amp; MINDSET
           </span>
-          <blockquote className="text-xl sm:text-2xl lg:text-3xl font-extrabold text-neutral-950 tracking-tight leading-snug">
+          <blockquote className="text-xl sm:text-2xl lg:text-3xl font-extrabold text-neutral-950 dark:text-white tracking-tight leading-snug">
             &ldquo;Talent without working hard is nothing.&rdquo;
           </blockquote>
-          <p className="text-xs font-semibold text-neutral-400 uppercase tracking-wider">
+          <p className="text-xs font-semibold text-neutral-400 dark:text-neutral-500 uppercase tracking-wider">
             — Cristiano Ronaldo
           </p>
-          <p className="text-xs sm:text-sm text-neutral-600 leading-relaxed max-w-2xl mx-auto pt-1">
+          <p className="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed max-w-2xl mx-auto pt-1">
             Whether it is mastering DSA, architecting full-stack web platforms, or preparing for high-stakes placement drives, I bring that same sports ethos to software engineering: show up every single day, master the fundamentals, embrace the pressure, and deliver with pride.
           </p>
         </div>

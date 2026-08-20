@@ -1,6 +1,7 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import Image from "next/image";
 import { Project, projects } from "@/data/projects";
 import { ProjectCard } from "@/components/projects/ProjectCard";
 import { SectionHeading } from "@/components/ui/SectionHeading";
@@ -18,6 +19,26 @@ import {
 
 export const ProjectsView: React.FC = () => {
   const [activeModalProject, setActiveModalProject] = useState<Project | null>(null);
+
+  // Close modal on Escape key and lock body scroll
+  useEffect(() => {
+    if (!activeModalProject) return;
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setActiveModalProject(null);
+      }
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
+    const originalOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+      document.body.style.overflow = originalOverflow;
+    };
+  }, [activeModalProject]);
 
   return (
     <div className="min-h-screen py-16 md:py-24 space-y-16">
@@ -46,14 +67,14 @@ export const ProjectsView: React.FC = () => {
         </div>
       </section>
 
-      {/* Bottom CTA Banner - Clean White Theme with Aligned Buttons */}
+      {/* Bottom CTA Banner */}
       <section className="container mx-auto px-4 sm:px-6 max-w-5xl pt-8">
-        <div className="rounded-3xl bg-white border border-neutral-200/90 p-8 md:p-12 shadow-xs flex flex-col md:flex-row items-center justify-between gap-8 text-center md:text-left">
+        <div className="rounded-3xl bg-white dark:bg-neutral-900/60 border border-neutral-200/90 dark:border-neutral-800 p-8 md:p-12 shadow-xs flex flex-col md:flex-row items-center justify-between gap-8 text-center md:text-left transition-colors">
           <div className="space-y-2 max-w-xl">
-            <h3 className="text-2xl font-bold tracking-tight text-neutral-950">
+            <h3 className="text-2xl font-bold tracking-tight text-neutral-950 dark:text-white">
               Have an idea? Let&apos;s build together
             </h3>
-            <p className="text-sm text-neutral-600 leading-relaxed">
+            <p className="text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">
               I am open to full-stack and AI software engineering roles, collaborative open-source projects, and technical opportunities.
             </p>
           </div>
@@ -86,31 +107,35 @@ export const ProjectsView: React.FC = () => {
 
       {/* Project Deep-Dive Modal */}
       {activeModalProject && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs animate-in fade-in duration-150">
+        <div
+          onClick={() => setActiveModalProject(null)}
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 dark:bg-black/80 backdrop-blur-xs animate-in fade-in duration-150 cursor-pointer"
+        >
           <div
-            className="relative w-full max-w-2xl max-h-[90vh] bg-white rounded-3xl shadow-2xl border border-neutral-200 flex flex-col overflow-hidden animate-in zoom-in-95 duration-150"
+            onClick={(e) => e.stopPropagation()}
+            className="relative w-full max-w-2xl max-h-[90vh] bg-white dark:bg-neutral-900 rounded-3xl shadow-2xl border border-neutral-200 dark:border-neutral-800 flex flex-col overflow-hidden animate-in zoom-in-95 duration-150 cursor-default"
             role="dialog"
             aria-modal="true"
           >
             {/* Modal Header */}
-            <div className="p-6 border-b border-neutral-100 flex items-start justify-between gap-4 bg-neutral-50/70">
+            <div className="p-6 border-b border-neutral-100 dark:border-neutral-800 flex items-start justify-between gap-4 bg-neutral-50/70 dark:bg-neutral-900/90">
               <div>
                 <div className="flex items-center gap-2 mb-1.5">
                   <Badge variant="subtle" size="sm">
                     {activeModalProject.categoryLabel}
                   </Badge>
                 </div>
-                <h3 className="text-xl md:text-2xl font-bold text-neutral-900 tracking-tight">
+                <h3 className="text-xl md:text-2xl font-bold text-neutral-900 dark:text-white tracking-tight">
                   {activeModalProject.name}
                 </h3>
-                <p className="text-xs md:text-sm text-neutral-500 mt-0.5">
+                <p className="text-xs md:text-sm text-neutral-500 dark:text-neutral-400 mt-0.5">
                   {activeModalProject.tagline}
                 </p>
               </div>
 
               <button
                 onClick={() => setActiveModalProject(null)}
-                className="p-2 rounded-full hover:bg-neutral-200/80 text-neutral-500 hover:text-neutral-900 transition-colors cursor-pointer"
+                className="p-2 rounded-full hover:bg-neutral-200/80 dark:hover:bg-neutral-800 text-neutral-500 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition-colors cursor-pointer"
                 aria-label="Close modal"
               >
                 <X className="w-5 h-5" />
@@ -118,25 +143,26 @@ export const ProjectsView: React.FC = () => {
             </div>
 
             {/* Modal Scrollable Content */}
-            <div className="p-6 md:p-8 overflow-y-auto space-y-6 text-neutral-700">
+            <div className="p-6 md:p-8 overflow-y-auto space-y-6 text-neutral-700 dark:text-neutral-300">
               {/* Project Screenshot Banner if available */}
               {activeModalProject.image && (
-                <div className="relative w-full h-56 sm:h-64 rounded-2xl overflow-hidden border border-neutral-200 shadow-xs">
-                  <img
+                <div className="relative w-full h-56 sm:h-64 rounded-2xl overflow-hidden border border-neutral-200 dark:border-neutral-800 shadow-xs">
+                  <Image
                     src={activeModalProject.image}
                     alt={activeModalProject.name}
-                    className="w-full h-full object-cover object-top"
+                    fill
+                    className="object-cover object-top"
                   />
                 </div>
               )}
 
               {/* Detailed Description */}
               <div className="space-y-2.5">
-                <h4 className="text-xs font-bold text-neutral-900 uppercase tracking-wider">
+                <h4 className="text-xs font-bold text-neutral-900 dark:text-neutral-100 uppercase tracking-wider">
                   Overview
                 </h4>
                 {activeModalProject.description.map((paragraph, idx) => (
-                  <p key={idx} className="text-xs md:text-sm leading-relaxed text-neutral-600">
+                  <p key={idx} className="text-xs md:text-sm leading-relaxed text-neutral-600 dark:text-neutral-400">
                     {paragraph}
                   </p>
                 ))}
@@ -145,17 +171,17 @@ export const ProjectsView: React.FC = () => {
               {/* Verified Metrics if available */}
               {activeModalProject.metrics && (
                 <div className="space-y-2.5">
-                  <h4 className="text-xs font-bold text-neutral-900 uppercase tracking-wider">
+                  <h4 className="text-xs font-bold text-neutral-900 dark:text-neutral-100 uppercase tracking-wider">
                     Key Metrics & Impact
                   </h4>
                   <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
                     {activeModalProject.metrics.map((m) => (
                       <div
                         key={m.label}
-                        className="p-3 rounded-xl bg-neutral-50 border border-neutral-200/70 text-center"
+                        className="p-3 rounded-xl bg-neutral-50 dark:bg-neutral-950/80 border border-neutral-200/70 dark:border-neutral-800 text-center"
                       >
-                        <p className="text-base font-bold text-neutral-950">{m.value}</p>
-                        <p className="text-[10.5px] text-neutral-500 font-medium leading-tight mt-0.5">
+                        <p className="text-base font-bold text-neutral-950 dark:text-white">{m.value}</p>
+                        <p className="text-[10.5px] text-neutral-500 dark:text-neutral-400 font-medium leading-tight mt-0.5">
                           {m.label}
                         </p>
                       </div>
@@ -167,16 +193,16 @@ export const ProjectsView: React.FC = () => {
               {/* Key Features */}
               {activeModalProject.features && activeModalProject.features.length > 0 && (
                 <div className="space-y-2.5">
-                  <h4 className="text-xs font-bold text-neutral-900 uppercase tracking-wider">
+                  <h4 className="text-xs font-bold text-neutral-900 dark:text-neutral-100 uppercase tracking-wider">
                     Key Features & Engineering Highlights
                   </h4>
                   <ul className="grid grid-cols-1 gap-2">
                     {activeModalProject.features.map((feat, idx) => (
                       <li
                         key={idx}
-                        className="flex items-start gap-2.5 text-xs md:text-sm text-neutral-600"
+                        className="flex items-start gap-2.5 text-xs md:text-sm text-neutral-600 dark:text-neutral-400"
                       >
-                        <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+                        <CheckCircle2 className="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0 mt-0.5" />
                         <span>{feat}</span>
                       </li>
                     ))}
@@ -187,10 +213,10 @@ export const ProjectsView: React.FC = () => {
               {/* Dataset if applicable */}
               {activeModalProject.dataset && (
                 <div className="space-y-1.5">
-                  <h4 className="text-xs font-bold text-neutral-900 uppercase tracking-wider">
+                  <h4 className="text-xs font-bold text-neutral-900 dark:text-neutral-100 uppercase tracking-wider">
                     Dataset & Sources
                   </h4>
-                  <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-neutral-100 text-neutral-800 text-xs font-medium">
+                  <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-neutral-100 dark:bg-neutral-800 text-neutral-800 dark:text-neutral-200 text-xs font-medium border border-neutral-200/70 dark:border-neutral-700">
                     <Database className="w-3.5 h-3.5" />
                     {activeModalProject.dataset}
                   </div>
@@ -199,7 +225,7 @@ export const ProjectsView: React.FC = () => {
 
               {/* Technology Stack */}
               <div className="space-y-2.5">
-                <h4 className="text-xs font-bold text-neutral-900 uppercase tracking-wider">
+                <h4 className="text-xs font-bold text-neutral-900 dark:text-neutral-100 uppercase tracking-wider">
                   Technology Stack
                 </h4>
                 <div className="flex flex-wrap gap-1.5">
@@ -213,7 +239,7 @@ export const ProjectsView: React.FC = () => {
             </div>
 
             {/* Modal Footer Actions */}
-            <div className="p-4 md:p-6 border-t border-neutral-100 bg-neutral-50/50 flex flex-wrap items-center justify-between gap-3">
+            <div className="p-4 md:p-6 border-t border-neutral-100 dark:border-neutral-800 bg-neutral-50/50 dark:bg-neutral-900/90 flex flex-wrap items-center justify-between gap-3">
               <div className="flex flex-wrap items-center gap-2.5">
                 {activeModalProject.liveDemo && (
                   <Button

@@ -4,8 +4,6 @@ import React, { useState } from "react";
 import { profile } from "@/data/profile";
 import { socialLinks } from "@/data/social-links";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { Button } from "@/components/ui/Button";
-import { Badge } from "@/components/ui/Badge";
 import {
   GithubIcon,
   LinkedinIcon,
@@ -18,11 +16,9 @@ import {
   Copy,
   Check,
   Send,
-  Sparkles,
   Loader2,
   CheckCircle2,
   AlertCircle,
-  MessageSquare,
 } from "lucide-react";
 
 interface FormData {
@@ -61,9 +57,8 @@ export const ContactView: React.FC = () => {
       case "twitter":
         return <XIcon size={17} />;
       case "email":
-        return <MailIcon size={18} />;
       default:
-        return null;
+        return <MailIcon size={18} />;
     }
   };
 
@@ -161,17 +156,17 @@ export const ContactView: React.FC = () => {
           <div className="lg:col-span-5 space-y-6">
             
             {/* Status & Availability Card */}
-            <div className="p-6 rounded-3xl bg-white border border-neutral-200/90 shadow-2xs space-y-4">
+            <div className="p-6 rounded-3xl bg-white dark:bg-neutral-900 border border-neutral-200/90 dark:border-neutral-800 shadow-2xs space-y-4">
               <div className="flex items-center gap-2">
                 <span className="relative flex h-3 w-3">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
                   <span className="relative inline-flex rounded-full h-3 w-3 bg-emerald-500"></span>
                 </span>
-                <span className="text-xs font-bold uppercase tracking-wider text-neutral-800">
+                <span className="text-xs font-bold uppercase tracking-wider text-neutral-900 dark:text-white">
                   Open to Opportunities
                 </span>
               </div>
-              <p className="text-xs sm:text-sm text-neutral-600 leading-relaxed">
+              <p className="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">
                 Currently exploring Full-Stack Development and LLM Engineering roles. Whether you have a project idea, a position opening, or just want to connect, my inbox is always open.
               </p>
             </div>
@@ -179,18 +174,18 @@ export const ContactView: React.FC = () => {
             {/* Direct Contact Cards */}
             <div className="space-y-3">
               {/* Email Card */}
-              <div className="p-5 rounded-2xl bg-white border border-neutral-200/90 shadow-2xs flex items-center justify-between gap-4">
+              <div className="p-5 rounded-2xl bg-white dark:bg-neutral-900 border border-neutral-200/90 dark:border-neutral-800 shadow-2xs flex items-center justify-between gap-4">
                 <div className="flex items-center gap-3.5 min-w-0">
-                  <div className="w-10 h-10 rounded-xl bg-neutral-100 flex items-center justify-center text-neutral-800 shrink-0">
+                  <div className="w-10 h-10 rounded-xl bg-neutral-100 dark:bg-neutral-800 flex items-center justify-center text-neutral-900 dark:text-neutral-100 shrink-0">
                     <Mail className="w-5 h-5" />
                   </div>
                   <div className="min-w-0">
-                    <p className="text-[11px] font-bold uppercase tracking-wider text-neutral-400">
+                    <p className="text-[11px] font-bold uppercase tracking-wider text-neutral-500 dark:text-neutral-400">
                       Email Address
                     </p>
                     <a
                       href={`mailto:${profile.email}`}
-                      className="text-xs sm:text-sm font-semibold text-neutral-950 hover:underline truncate block"
+                      className="text-xs sm:text-sm font-semibold text-neutral-950 dark:text-white hover:underline truncate block"
                     >
                       {profile.email}
                     </a>
@@ -201,11 +196,11 @@ export const ContactView: React.FC = () => {
                   onClick={handleCopyEmail}
                   type="button"
                   aria-label="Copy email address"
-                  className="p-2 rounded-xl bg-neutral-50 hover:bg-neutral-100 border border-neutral-200 text-neutral-600 hover:text-neutral-950 transition-colors cursor-pointer shrink-0"
+                  className="p-2 rounded-xl bg-neutral-50 dark:bg-neutral-800 hover:bg-neutral-100 dark:hover:bg-neutral-700 border border-neutral-200 dark:border-neutral-700 text-neutral-700 dark:text-neutral-300 hover:text-neutral-950 dark:hover:text-white transition-colors cursor-pointer shrink-0"
                   title="Copy email to clipboard"
                 >
                   {copiedEmail ? (
-                    <Check className="w-4 h-4 text-emerald-600" />
+                    <Check className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
                   ) : (
                     <Copy className="w-4 h-4" />
                   )}
@@ -213,15 +208,15 @@ export const ContactView: React.FC = () => {
               </div>
 
               {/* Location Card */}
-              <div className="p-5 rounded-2xl bg-white border border-neutral-200/90 shadow-2xs flex items-center gap-3.5">
-                <div className="w-10 h-10 rounded-xl bg-neutral-100 flex items-center justify-center text-neutral-800 shrink-0">
+              <div className="p-5 rounded-2xl bg-white dark:bg-neutral-900 border border-neutral-200/90 dark:border-neutral-800 shadow-2xs flex items-center gap-3.5">
+                <div className="w-10 h-10 rounded-xl bg-neutral-100 dark:bg-neutral-800 flex items-center justify-center text-neutral-900 dark:text-neutral-100 shrink-0">
                   <MapPin className="w-5 h-5" />
                 </div>
                 <div>
-                  <p className="text-[11px] font-bold uppercase tracking-wider text-neutral-400">
+                  <p className="text-[11px] font-bold uppercase tracking-wider text-neutral-500 dark:text-neutral-400">
                     Location
                   </p>
-                  <p className="text-xs sm:text-sm font-semibold text-neutral-950">
+                  <p className="text-xs sm:text-sm font-semibold text-neutral-950 dark:text-white">
                     {profile.location}
                   </p>
                 </div>
@@ -229,8 +224,8 @@ export const ContactView: React.FC = () => {
             </div>
 
             {/* Social Links */}
-            <div className="p-6 rounded-3xl bg-white border border-neutral-200/90 shadow-2xs space-y-4">
-              <h3 className="text-xs font-bold uppercase tracking-wider text-neutral-500">
+            <div className="p-6 rounded-3xl bg-white dark:bg-neutral-900 border border-neutral-200/90 dark:border-neutral-800 shadow-2xs space-y-4">
+              <h3 className="text-xs font-bold uppercase tracking-wider text-neutral-500 dark:text-neutral-400">
                 Connect Online
               </h3>
               <div className="grid grid-cols-2 gap-2.5">
@@ -242,9 +237,9 @@ export const ContactView: React.FC = () => {
                       href={item.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-2.5 p-3 rounded-xl bg-neutral-50 hover:bg-neutral-100/80 border border-neutral-200/70 text-xs font-semibold text-neutral-800 hover:text-neutral-950 transition-colors"
+                      className="flex items-center gap-2.5 p-3 rounded-xl bg-neutral-50 dark:bg-neutral-800/80 hover:bg-neutral-100/80 dark:hover:bg-neutral-700/80 border border-neutral-200/70 dark:border-neutral-700 text-xs font-semibold text-neutral-800 dark:text-neutral-200 hover:text-neutral-950 dark:hover:text-white transition-colors"
                     >
-                      <span className="text-neutral-700">{getSocialIcon(item.icon)}</span>
+                      <span className="text-neutral-800 dark:text-neutral-200">{getSocialIcon(item.icon)}</span>
                       <span>{item.name}</span>
                     </a>
                   ))}
@@ -255,34 +250,34 @@ export const ContactView: React.FC = () => {
 
           {/* RIGHT COLUMN: Interactive Contact Form */}
           <div className="lg:col-span-7">
-            <div className="p-6 sm:p-10 rounded-3xl bg-white border border-neutral-200/90 shadow-2xs space-y-6">
+            <div className="p-6 sm:p-10 rounded-3xl bg-white dark:bg-neutral-900 border border-neutral-200/90 dark:border-neutral-800 shadow-2xs space-y-6">
               
               <div className="space-y-1">
-                <h3 className="text-lg sm:text-xl font-bold text-neutral-950">
+                <h3 className="text-lg sm:text-xl font-bold text-neutral-950 dark:text-white">
                   Send a Message
                 </h3>
-                <p className="text-xs sm:text-sm text-neutral-500">
+                <p className="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400">
                   Fill in the form below and I&apos;ll get back to you as soon as possible.
                 </p>
               </div>
 
               {isSuccess ? (
-                <div className="p-6 rounded-2xl bg-emerald-50 border border-emerald-200 text-center space-y-4 py-10">
-                  <div className="w-12 h-12 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center mx-auto">
+                <div className="p-6 rounded-2xl bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800 text-center space-y-4 py-10">
+                  <div className="w-12 h-12 rounded-full bg-emerald-100 dark:bg-emerald-900 text-emerald-700 dark:text-emerald-300 flex items-center justify-center mx-auto">
                     <CheckCircle2 className="w-6 h-6" />
                   </div>
                   <div className="space-y-1 max-w-sm mx-auto">
-                    <h4 className="text-base font-bold text-emerald-950">
+                    <h4 className="text-base font-bold text-emerald-950 dark:text-emerald-200">
                       Message Prepared!
                     </h4>
-                    <p className="text-xs text-emerald-800 leading-relaxed">
+                    <p className="text-xs text-emerald-800 dark:text-emerald-300 leading-relaxed">
                       Thank you, <span className="font-semibold">{formData.name}</span>. Your message was prepared for delivery to <span className="font-semibold">{profile.email}</span>.
                     </p>
                   </div>
                   <div className="pt-2">
                     <button
                       onClick={handleReset}
-                      className="px-4 py-2 rounded-xl bg-white border border-emerald-300 text-xs font-semibold text-emerald-900 hover:bg-emerald-100 transition-colors cursor-pointer shadow-2xs"
+                      className="px-4 py-2 rounded-xl bg-white dark:bg-neutral-900 border border-emerald-300 dark:border-emerald-700 text-xs font-semibold text-emerald-900 dark:text-emerald-200 hover:bg-emerald-100 dark:hover:bg-neutral-800 transition-colors cursor-pointer shadow-2xs"
                     >
                       Send another message
                     </button>
@@ -297,7 +292,7 @@ export const ContactView: React.FC = () => {
                     <div className="space-y-1.5">
                       <label
                         htmlFor="name"
-                        className="text-xs font-semibold text-neutral-800"
+                        className="text-xs font-semibold text-neutral-900 dark:text-neutral-200"
                       >
                         Full Name <span className="text-rose-500">*</span>
                       </label>
@@ -310,14 +305,14 @@ export const ContactView: React.FC = () => {
                           setFormData({ ...formData, name: e.target.value })
                         }
                         placeholder="e.g. Alex Smith"
-                        className={`w-full px-3.5 py-2.5 rounded-xl border text-xs sm:text-sm bg-white transition-colors focus:outline-none focus:ring-2 focus:ring-neutral-950/20 ${
+                        className={`w-full px-3.5 py-2.5 rounded-xl border text-xs sm:text-sm bg-white dark:bg-neutral-950 text-neutral-900 dark:text-white transition-colors focus:outline-hidden focus:ring-2 focus:ring-neutral-950/20 dark:focus:ring-neutral-200/20 ${
                           errors.name
                             ? "border-rose-400 focus:border-rose-500"
-                            : "border-neutral-200 focus:border-neutral-950"
+                            : "border-neutral-200 dark:border-neutral-800 focus:border-neutral-950 dark:focus:border-neutral-400"
                         }`}
                       />
                       {errors.name && (
-                        <p className="text-[11px] text-rose-600 font-medium flex items-center gap-1">
+                        <p className="text-[11px] text-rose-600 dark:text-rose-400 font-medium flex items-center gap-1">
                           <AlertCircle className="w-3 h-3" />
                           {errors.name}
                         </p>
@@ -328,7 +323,7 @@ export const ContactView: React.FC = () => {
                     <div className="space-y-1.5">
                       <label
                         htmlFor="email"
-                        className="text-xs font-semibold text-neutral-800"
+                        className="text-xs font-semibold text-neutral-900 dark:text-neutral-200"
                       >
                         Email Address <span className="text-rose-500">*</span>
                       </label>
@@ -341,14 +336,14 @@ export const ContactView: React.FC = () => {
                           setFormData({ ...formData, email: e.target.value })
                         }
                         placeholder="alex@company.com"
-                        className={`w-full px-3.5 py-2.5 rounded-xl border text-xs sm:text-sm bg-white transition-colors focus:outline-none focus:ring-2 focus:ring-neutral-950/20 ${
+                        className={`w-full px-3.5 py-2.5 rounded-xl border text-xs sm:text-sm bg-white dark:bg-neutral-950 text-neutral-900 dark:text-white transition-colors focus:outline-hidden focus:ring-2 focus:ring-neutral-950/20 dark:focus:ring-neutral-200/20 ${
                           errors.email
                             ? "border-rose-400 focus:border-rose-500"
-                            : "border-neutral-200 focus:border-neutral-950"
+                            : "border-neutral-200 dark:border-neutral-800 focus:border-neutral-950 dark:focus:border-neutral-400"
                         }`}
                       />
                       {errors.email && (
-                        <p className="text-[11px] text-rose-600 font-medium flex items-center gap-1">
+                        <p className="text-[11px] text-rose-600 dark:text-rose-400 font-medium flex items-center gap-1">
                           <AlertCircle className="w-3 h-3" />
                           {errors.email}
                         </p>
@@ -360,7 +355,7 @@ export const ContactView: React.FC = () => {
                   <div className="space-y-1.5">
                     <label
                       htmlFor="subject"
-                      className="text-xs font-semibold text-neutral-800"
+                      className="text-xs font-semibold text-neutral-900 dark:text-neutral-200"
                     >
                       Subject <span className="text-rose-500">*</span>
                     </label>
@@ -373,14 +368,14 @@ export const ContactView: React.FC = () => {
                         setFormData({ ...formData, subject: e.target.value })
                       }
                       placeholder="Project collaboration / Role opportunity"
-                      className={`w-full px-3.5 py-2.5 rounded-xl border text-xs sm:text-sm bg-white transition-colors focus:outline-none focus:ring-2 focus:ring-neutral-950/20 ${
+                      className={`w-full px-3.5 py-2.5 rounded-xl border text-xs sm:text-sm bg-white dark:bg-neutral-950 text-neutral-900 dark:text-white transition-colors focus:outline-hidden focus:ring-2 focus:ring-neutral-950/20 dark:focus:ring-neutral-200/20 ${
                         errors.subject
                           ? "border-rose-400 focus:border-rose-500"
-                          : "border-neutral-200 focus:border-neutral-950"
+                          : "border-neutral-200 dark:border-neutral-800 focus:border-neutral-950 dark:focus:border-neutral-400"
                       }`}
                     />
                     {errors.subject && (
-                      <p className="text-[11px] text-rose-600 font-medium flex items-center gap-1">
+                      <p className="text-[11px] text-rose-600 dark:text-rose-400 font-medium flex items-center gap-1">
                         <AlertCircle className="w-3 h-3" />
                         {errors.subject}
                       </p>
@@ -391,7 +386,7 @@ export const ContactView: React.FC = () => {
                   <div className="space-y-1.5">
                     <label
                       htmlFor="message"
-                      className="text-xs font-semibold text-neutral-800"
+                      className="text-xs font-semibold text-neutral-900 dark:text-neutral-200"
                     >
                       Message <span className="text-rose-500">*</span>
                     </label>
@@ -404,14 +399,14 @@ export const ContactView: React.FC = () => {
                         setFormData({ ...formData, message: e.target.value })
                       }
                       placeholder="Hi Pranav, I came across your portfolio and would like to discuss..."
-                      className={`w-full px-3.5 py-2.5 rounded-xl border text-xs sm:text-sm bg-white transition-colors focus:outline-none focus:ring-2 focus:ring-neutral-950/20 resize-y ${
+                      className={`w-full px-3.5 py-2.5 rounded-xl border text-xs sm:text-sm bg-white dark:bg-neutral-950 text-neutral-900 dark:text-white transition-colors focus:outline-hidden focus:ring-2 focus:ring-neutral-950/20 dark:focus:ring-neutral-200/20 resize-y ${
                         errors.message
                           ? "border-rose-400 focus:border-rose-500"
-                          : "border-neutral-200 focus:border-neutral-950"
+                          : "border-neutral-200 dark:border-neutral-800 focus:border-neutral-950 dark:focus:border-neutral-400"
                       }`}
                     />
                     {errors.message && (
-                      <p className="text-[11px] text-rose-600 font-medium flex items-center gap-1">
+                      <p className="text-[11px] text-rose-600 dark:text-rose-400 font-medium flex items-center gap-1">
                         <AlertCircle className="w-3 h-3" />
                         {errors.message}
                       </p>
@@ -423,7 +418,7 @@ export const ContactView: React.FC = () => {
                     <button
                       type="submit"
                       disabled={isSubmitting}
-                      className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-neutral-950 hover:bg-neutral-800 disabled:bg-neutral-400 text-white text-xs sm:text-sm font-semibold transition-all shadow-xs cursor-pointer"
+                      className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-neutral-950 hover:bg-neutral-800 dark:bg-white dark:text-neutral-950 dark:hover:bg-neutral-200 disabled:bg-neutral-400 text-white text-xs sm:text-sm font-semibold transition-all shadow-xs cursor-pointer"
                     >
                       {isSubmitting ? (
                         <>

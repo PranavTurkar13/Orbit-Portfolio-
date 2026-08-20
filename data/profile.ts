@@ -48,7 +48,7 @@ export const profile: Profile = {
     institution: "P.E.S. Modern College of Engineering",
     location: "Pune, Maharashtra",
     cgpa: "9.09/10",
-    duration: "August 2022 – June 2026",
+    duration: "2022 – 2026",
   },
   educationTimeline: [
     {
@@ -56,7 +56,7 @@ export const profile: Profile = {
       institution: "P.E.S. Modern College of Engineering",
       location: "Pune, Maharashtra",
       score: "CGPA: 9.09 / 10",
-      duration: "August 2022 – June 2026",
+      duration: "Nov 2022 – Jul 2026",
       details: "Discovered passions for Full-Stack Web Development, LLM Engineering, Hackathons, and NSS Leadership.",
     },
     {
@@ -64,15 +64,15 @@ export const profile: Profile = {
       institution: "Raj Junior College",
       location: "Yavatmal, Maharashtra",
       score: "81.67%",
-      duration: "Completed March 2022",
+      duration: "Completed Mar 2022",
       details: "Achieved 94.04 percentile in MHT-CET Engineering Entrance Exam.",
     },
     {
-      degree: "Class 10th — SSC",
+      degree: "Class 10th — CBSE",
       institution: "Yavatmal Public School",
       location: "Yavatmal, Maharashtra",
       score: "91.00%",
-      duration: "Completed July 2020",
+      duration: "Completed Jul 2020",
       details: "Strong foundation in academics and played football for the school team.",
     },
   ],

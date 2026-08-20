@@ -1,11 +1,21 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 :root {
   --background: #ffffff;
   --foreground: #111111;
   --muted: #666666;
   --border: #e5e5e5;
   --card-bg: #ffffff;
+}
+
+.dark {
+  --background: #09090b;
+  --foreground: #f4f4f5;
+  --muted: #a1a1aa;
+  --border: #27272a;
+  --card-bg: #121215;
 }
 
 body {
@@ -20,6 +30,11 @@ body {
   color: #ffffff;
 }
 
+.dark ::selection {
+  background-color: #f4f4f5;
+  color: #09090b;
+}
+
 /* Custom scrollbar for subtle aesthetic */
 ::-webkit-scrollbar {
   width: 8px;
@@ -29,13 +44,25 @@ body {
   background: #f8f8f8;
 }
 
+.dark ::-webkit-scrollbar-track {
+  background: #09090b;
+}
+
 ::-webkit-scrollbar-thumb {
   background: #d4d4d4;
   border-radius: 4px;
 }
 
+.dark ::-webkit-scrollbar-thumb {
+  background: #27272a;
+}
+
 ::-webkit-scrollbar-thumb:hover {
   background: #a3a3a3;
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: #3f3f46;
 }
 
 /* Smooth floating animations */
@@ -49,17 +76,17 @@ body {
 }
 
 .animate-float-slow {
-  animation: float 7s ease-in-out infinite;
+  animation: float 4s ease-in-out infinite;
 }
 
 .animate-float-delayed {
-  animation: float 7s ease-in-out infinite;
-  animation-delay: 2.3s;
+  animation: float 4s ease-in-out infinite;
+  animation-delay: 1.33s;
 }
 
 .animate-float-alt {
-  animation: float 7s ease-in-out infinite;
-  animation-delay: 4.6s;
+  animation: float 4s ease-in-out infinite;
+  animation-delay: 2.66s;
 }
 
 /* Wave animation */
@@ -98,6 +125,12 @@ body {
   animation: gridMove 22s linear infinite;
   mask-image: radial-gradient(ellipse 80% 65% at 50% 40%, #000 35%, transparent 100%);
   -webkit-mask-image: radial-gradient(ellipse 80% 65% at 50% 40%, #000 35%, transparent 100%);
+}
+
+.dark .hero-grid-animated {
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
 }
 
 /* Floating Code Symbols Animations */

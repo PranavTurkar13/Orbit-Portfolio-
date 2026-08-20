@@ -26,11 +26,11 @@ export const SectionHeading: React.FC<SectionHeadingProps> = ({
       <div className={`w-full flex ${align === "center" && !action ? "justify-center" : "justify-between"} items-baseline gap-4`}>
         <div className={`flex flex-col ${align === "center" && !action ? "items-center" : ""}`}>
           {eyebrow && (
-            <span className="text-xs sm:text-xs font-semibold uppercase tracking-[0.2em] text-neutral-500 mb-3">
+            <span className="text-xs sm:text-xs font-semibold uppercase tracking-[0.2em] text-neutral-500 dark:text-neutral-400 mb-3">
               {eyebrow}
             </span>
           )}
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-neutral-950">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-neutral-950 dark:text-white">
             {title}
           </h2>
         </div>
@@ -38,7 +38,7 @@ export const SectionHeading: React.FC<SectionHeadingProps> = ({
       </div>
 
       {description && (
-        <p className={`mt-3.5 text-base sm:text-lg text-neutral-600 max-w-2xl ${align === "center" ? "mx-auto" : ""}`}>
+        <p className={`mt-3.5 text-base sm:text-lg text-neutral-600 dark:text-neutral-400 max-w-2xl ${align === "center" ? "mx-auto" : ""}`}>
           {description}
         </p>
       )}
